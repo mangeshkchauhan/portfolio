@@ -196,7 +196,7 @@ export const workExperience = [
   },
   {
     id: 3,
-    title: "Fronted Engineer - Fountane",
+    title: "Frontend Engineer - Fountane",
     desc: "Developed a landing page for a 3d printed products and contributed in building a hotel booking platform",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
