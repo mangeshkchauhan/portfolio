@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
 
 import Lottie from "react-lottie";
@@ -52,6 +52,21 @@ export const BentoGridItem = ({
   const rightLists = ["Android", "IOS", "Redux"];
 
   const [copied, setCopied] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (copied) {
+      timerRef.current = setTimeout(() => {
+        setCopied(false);
+      }, 2000);
+    }
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [copied]);
 
   const defaultOptions = {
     loop: copied,
@@ -161,10 +176,12 @@ export const BentoGridItem = ({
             <div className="mt-5 relative">
               <div
                 className={`absolute -bottom-5 right-0 ${
-                  copied ? "block" : "block"
+                  copied ? "block" : "none"
                 }`}
               >
-                <Lottie options={defaultOptions} height={200} width={400} />
+                {copied && (
+                  <Lottie options={defaultOptions} height={200} width={400} />
+                )}
               </div>
 
               <MagicButton
