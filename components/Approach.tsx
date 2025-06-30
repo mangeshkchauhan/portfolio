@@ -1,164 +1,256 @@
 "use client";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+import { motion } from "framer-motion";
+import { FaLightbulb, FaCode, FaRocket, FaUsers, FaProjectDiagram, FaCheckCircle } from "react-icons/fa";
+import { MdDesignServices, MdSpeed, MdSecurity } from "react-icons/md";
+import { BiTargetLock } from "react-icons/bi";
 
 const Approach = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const approaches = [
+    {
+      phase: "01",
+      title: "Discovery & Strategy",
+      subtitle: "Understanding Your Vision",
+      description: "We start by diving deep into your project requirements, target audience, and business goals. I analyze your needs, research the market, and create a comprehensive strategy that aligns with your objectives.",
+      icon: <FaLightbulb className="text-2xl" />,
+      features: [
+        "Requirement Analysis",
+        "Market Research", 
+        "User Persona Development",
+        "Technical Planning"
+      ],
+      color: "from-purple/20 to-blue-500/20",
+      borderColor: "border-purple/30",
+      iconBg: "bg-purple/20"
+    },
+    {
+      phase: "02", 
+      title: "Design & Development",
+      subtitle: "Bringing Ideas to Life",
+      description: "Using modern technologies and best practices, I transform your vision into reality. Clean code, responsive design, and user-centric approach ensure your project stands out in the digital landscape.",
+      icon: <FaCode className="text-2xl" />,
+      features: [
+        "Modern UI/UX Design",
+        "Clean Code Architecture",
+        "Responsive Development",
+        "Performance Optimization"
+      ],
+      color: "from-emerald-500/20 to-teal-500/20",
+      borderColor: "border-emerald-500/30",
+      iconBg: "bg-emerald-500/20"
+    },
+    {
+      phase: "03",
+      title: "Testing & Launch", 
+      subtitle: "Delivering Excellence",
+      description: "Rigorous testing, optimization, and seamless deployment ensure your project launches flawlessly. I provide ongoing support and maintenance to keep your application running smoothly.",
+      icon: <FaRocket className="text-2xl" />,
+      features: [
+        "Quality Assurance",
+        "Performance Testing",
+        "Deployment & Launch",
+        "Ongoing Support"
+      ],
+      color: "from-orange-500/20 to-red-500/20", 
+      borderColor: "border-orange-500/30",
+      iconBg: "bg-orange-500/20"
+    }
+  ];
+
+  const principles = [
+    {
+      icon: <FaUsers className="text-xl" />,
+      title: "User-Centric",
+      description: "Every decision prioritizes user experience and satisfaction"
+    },
+    {
+      icon: <MdSpeed className="text-xl" />,
+      title: "Performance First",
+      description: "Optimized for speed and efficient resource utilization"
+    },
+    {
+      icon: <MdSecurity className="text-xl" />,
+      title: "Security Focused",
+      description: "Built with security best practices from the ground up"
+    },
+    {
+      icon: <BiTargetLock className="text-xl" />,
+      title: "Goal Oriented",
+      description: "Aligned with your business objectives and KPIs"
+    }
+  ];
+
   return (
-    <section className="w-full py-20">
-      <h1 className="heading">
-        My <span className="text-purple">approach</span>
-      </h1>
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        <Card
-          title="Planning & Strategy"
-          icon={<AceternityIcon order="Phase 1" />}
-          des="We'll collaborate to map out your website's goals, target audience, 
-          and key functionalities. We'll discuss things like site structure, 
-          navigation, and content requirements."
+    <section className="w-full py-20" id="approach">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4"
+      >
+        {/* Section Header */}
+        <motion.div variants={itemVariants} className="text-center mb-16">
+          <h1 className="heading mb-4">
+            My <span className="text-purple">approach</span> to development
+          </h1>
+          <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
+            A systematic methodology that ensures every project is delivered with precision, 
+            quality, and attention to detail.
+          </p>
+        </motion.div>
+
+        {/* Development Phases */}
+        <motion.div variants={itemVariants} className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+          {approaches.map((approach, index) => (
+            <motion.div
+              key={approach.phase}
+              variants={itemVariants}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${approach.color} border ${approach.borderColor} backdrop-blur-sm p-8 hover:shadow-2xl hover:shadow-purple/10 transition-all duration-500`}
+            >
+              {/* Phase Number */}
+              <div className="absolute top-4 right-4 text-6xl font-bold text-white/5 group-hover:text-white/10 transition-colors duration-500">
+                {approach.phase}
+              </div>
+
+              {/* Icon */}
+              <motion.div 
+                className={`inline-flex items-center justify-center w-16 h-16 ${approach.iconBg} border ${approach.borderColor} rounded-2xl mb-6 text-white group-hover:scale-110 transition-transform duration-300`}
+                whileHover={{ rotate: 5 }}
+              >
+                {approach.icon}
+              </motion.div>
+
+              {/* Content */}
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple transition-colors duration-300">
+                    {approach.title}
+                  </h3>
+                  <p className="text-purple/80 font-medium text-sm uppercase tracking-wider">
+                    {approach.subtitle}
+                  </p>
+                </div>
+
+                <p className="text-gray-300 leading-relaxed">
+                  {approach.description}
+                </p>
+
+                {/* Features List */}
+                <div className="space-y-2 pt-4">
+                  {approach.features.map((feature, featureIndex) => (
+                    <motion.div
+                      key={feature}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
+                      className="flex items-center gap-3 text-sm text-gray-400"
+                    >
+                      <FaCheckCircle className="text-purple text-xs flex-shrink-0" />
+                      <span>{feature}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Hover Effect Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Development Principles */}
+        <motion.div variants={itemVariants}>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Core <span className="text-purple">Principles</span>
+            </h2>
+            <p className="text-gray-400 max-w-xl mx-auto">
+              The fundamental values that guide every line of code I write
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {principles.map((principle, index) => (
+              <motion.div
+                key={principle.title}
+                variants={itemVariants}
+                whileHover={{ 
+                  scale: 1.05,
+                  transition: { duration: 0.2 }
+                }}
+                className="group p-6 bg-gradient-to-br from-neutral-900/50 to-neutral-800/30 border border-neutral-700/50 rounded-xl backdrop-blur-sm hover:border-purple/30 transition-all duration-300"
+              >
+                <motion.div 
+                  className="inline-flex items-center justify-center w-12 h-12 bg-purple/20 border border-purple/30 rounded-lg mb-4 text-purple group-hover:scale-110 transition-transform duration-300"
+                  whileHover={{ rotate: 10 }}
+                >
+                  {principle.icon}
+                </motion.div>
+                
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple transition-colors duration-300">
+                  {principle.title}
+                </h3>
+                
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {principle.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div 
+          variants={itemVariants}
+          className="text-center mt-16 p-8 bg-gradient-to-r from-purple/10 to-blue-500/10 border border-purple/20 rounded-2xl backdrop-blur-sm"
         >
-          <CanvasRevealEffect
-            animationSpeed={5.1}
-            containerClassName="bg-emerald-900 rounded-3xl overflow-hidden"
-          />
-        </Card>
-        <Card
-          title="Development & Progress Update"
-          icon={<AceternityIcon order="Phase 2" />}
-          des="Once we agree on the plan, I cue my lofi anime playlist and dive into
-          coding. From initial designs to clean code, I keep you updated
-          every step of the way."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-pink-900 rounded-3xl overflow-hidden"
-            colors={[
-              [255, 166, 158],
-              [221, 255, 247],
-            ]}
-            dotSize={2}
-          />
-        </Card>
-        <Card
-          title="Development & Launch"
-          icon={<AceternityIcon order="Phase 3" />}
-          des="This is where the magic happens! Based on the approved design, 
-          I'll translate everything into functional code, building your website
-          from the ground up."
-        >
-          <CanvasRevealEffect
-            animationSpeed={3}
-            containerClassName="bg-sky-600 rounded-3xl overflow-hidden"
-            colors={[[125, 211, 252]]}
-          />
-        </Card>
-      </div>
+          <h3 className="text-2xl font-bold text-white mb-4">
+            Ready to Start Your Project?
+          </h3>
+                     <p className="text-gray-300 mb-6 max-w-md mx-auto">
+             Let&apos;s discuss how we can bring your vision to life with this proven approach.
+           </p>
+           <motion.a
+             href="#contact"
+             whileHover={{ scale: 1.05 }}
+             whileTap={{ scale: 0.95 }}
+             className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 rounded-lg text-white font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple/25"
+           >
+             <FaProjectDiagram />
+             Let&apos;s Collaborate
+          </motion.a>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };
 
 export default Approach;
-
-const Card = ({
-  title,
-  icon,
-  children,
-  des,
-}: {
-  title: string;
-  icon: React.ReactNode;
-  children?: React.ReactNode;
-  des: string;
-}) => {
-  const [hovered, setHovered] = React.useState(false);
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      // change h-[30rem] to h-[35rem], add rounded-3xl
-      className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl "
-      style={{
-        background: "rgb(4,7,29)",
-        backgroundColor:
-          "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-      }}
-    >
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
-
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="h-full w-full absolute inset-0"
-          >
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="relative z-20 px-10">
-        <div
-          className="text-center group-hover/canvas-card:-translate-y-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] 
-        group-hover/canvas-card:opacity-0 transition duration-200 min-w-40 mx-auto flex items-center justify-center"
-        >
-          {icon}
-        </div>
-        <h2
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-        >
-          {title}
-        </h2>
-        <p
-          className="text-sm opacity-0 group-hover/canvas-card:opacity-100
-         relative z-10 mt-4 group-hover/canvas-card:text-white text-center
-         group-hover/canvas-card:-translate-y-2 transition duration-200"
-          style={{ color: "#E4ECFF" }}
-        >
-          {des}
-        </p>
-      </div>
-    </div>
-  );
-};
-const AceternityIcon = ({ order }: { order: string }) => {
-  return (
-    <div>
-      <button className="relative inline-flex overflow-hidden rounded-full p-[1px] ">
-        <span
-          className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite]
-         bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]"
-        />
-        <span
-          className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-5 py-2 text-purple backdrop-blur-3xl font-bold text-2xl"
-        >
-          {order}
-        </span>
-      </button>
-    </div>
-  );
-};
-
-export const Icon = ({ className, ...rest }: any) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      stroke="currentColor"
-      className={className}
-      {...rest}
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
-    </svg>
-  );
-};

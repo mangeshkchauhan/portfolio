@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -8,56 +8,231 @@ import {
 } from "framer-motion";
 import { cn } from "@/utils/cn";
 import Link from "next/link";
+import { FaEnvelope, FaBars, FaTimes } from "react-icons/fa";
+
+import { NavItem } from "@/data";
 
 export const FloatingNav = ({
   navItems,
   className,
 }: {
-  navItems: {
-    name: string;
-    link: string;
-    icon?: JSX.Element;
-  }[];
+  navItems: NavItem[];
   className?: string;
 }) => {
+  const { scrollYProgress } = useScroll();
+  const [visible, setVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Handle scroll visibility
+  useMotionValueEvent(scrollYProgress, "change", (current) => {
+    if (typeof current === "number") {
+      let direction = current! - scrollYProgress.getPrevious()!;
+      
+      if (scrollYProgress.get() < 0.05) {
+        setVisible(true);
+      } else {
+        if (direction < 0) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
+      }
+    }
+  });
+
+  // Track active section
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleScroll = () => {
+      const sections = navItems.map(item => item.link.replace('#', ''));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [navItems]);
+
+  const handleLinkClick = (link: string) => {
+    setMobileMenuOpen(false);
+    
+    // Smooth scroll to section
+    if (typeof window !== 'undefined') {
+      const element = document.querySelector(link);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: -100,
-        }}
-        animate={{
-          y: 0,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.2,
-        }}
-        className={cn(
-          "flex max-w-fit  fixed top-10 inset-x-0 mx-auto border rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] z-[5000] px-10 py-5 border-white items-center justify-center space-x-4 bg-black-100",
-          className
-        )}
-      >
-        {navItems.map((navItem: any, idx: number) => (
-          <Link
-            key={`link=${idx}`}
-            href={navItem.link}
+    <>
+      <AnimatePresence mode="wait">
+        {visible && (
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ opacity: 0, y: -100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
+              "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/[0.1] rounded-full shadow-lg backdrop-blur-lg bg-black-100/80 z-[5000] px-6 py-3 items-center justify-center space-x-4",
+              className
             )}
           >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="hidden sm:block text-sm">{navItem.name}</span>
-          </Link>
-        ))}
-        <button className="border text-sm font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 rounded-full">
-          <a href="mailto:mangeshkrm123@gmail.com">
-            <span>Email</span>
-            <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
-          </a>
-        </button>
-      </motion.div>
-    </AnimatePresence>
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
+              {navItems.map((navItem, idx) => {
+                const isActive = activeSection === navItem.link.replace('#', '');
+                return (
+                  <motion.div
+                    key={`nav-${idx}`}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Link
+                      href={navItem.link}
+                      onClick={() => handleLinkClick(navItem.link)}
+                      className={cn(
+                        "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center space-x-2",
+                        isActive
+                          ? "text-purple bg-purple/10 border border-purple/20"
+                          : "text-neutral-300 hover:text-white hover:bg-white/5"
+                      )}
+                    >
+                      {navItem.icon && (
+                        <span className="text-xs">{navItem.icon}</span>
+                      )}
+                      <span>{navItem.name}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="active-pill"
+                          className="absolute inset-0 rounded-full bg-purple/20 border border-purple/30"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Mobile Menu Button */}
+            <div className="md:hidden flex items-center">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 text-white hover:text-purple transition-colors"
+              >
+                {mobileMenuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
+              </motion.button>
+            </div>
+
+            {/* Contact Button */}
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <a
+                href="mailto:mangeshkrm123@gmail.com"
+                className="relative flex items-center space-x-2 border border-purple/50 text-purple hover:text-white hover:bg-purple/20 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 group"
+              >
+                <FaEnvelope size={12} />
+                <span className="hidden sm:inline">Contact</span>
+                <span className="sm:hidden">Email</span>
+                <motion.span
+                  className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-purple to-transparent h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                  layoutId="contact-underline"
+                />
+              </a>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            className="fixed top-20 left-4 right-4 z-[4999] md:hidden"
+          >
+            <div className="bg-black-100/95 backdrop-blur-lg border border-white/[0.1] rounded-2xl p-6 shadow-xl">
+              <div className="space-y-4">
+                {navItems.map((navItem, idx) => {
+                  const isActive = activeSection === navItem.link.replace('#', '');
+                  return (
+                    <motion.div
+                      key={`mobile-nav-${idx}`}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: idx * 0.1 }}
+                    >
+                      <Link
+                        href={navItem.link}
+                        onClick={() => handleLinkClick(navItem.link)}
+                        className={cn(
+                          "flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
+                          isActive
+                            ? "text-purple bg-purple/10 border border-purple/20"
+                            : "text-neutral-300 hover:text-white hover:bg-white/5"
+                        )}
+                      >
+                        {navItem.icon && (
+                          <span className="text-lg">{navItem.icon}</span>
+                        )}
+                        <span>{navItem.name}</span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+                
+                {/* Mobile Contact Button */}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: navItems.length * 0.1 }}
+                  className="pt-4 border-t border-white/[0.1]"
+                >
+                  <a
+                    href="mailto:mangeshkrm123@gmail.com"
+                    className="flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium text-purple hover:text-white hover:bg-purple/10 transition-all duration-300"
+                  >
+                    <FaEnvelope />
+                    <span>Contact Me</span>
+                  </a>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[4998] md:hidden"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+    </>
   );
 };

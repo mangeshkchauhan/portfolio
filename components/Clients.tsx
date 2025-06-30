@@ -17,7 +17,7 @@ const Clients = () => {
         <h1 className="heading mt-10" style={{ fontSize: "30px" }}>
           Contributed <span className="text-purple">for</span>
         </h1>
-        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-16 mt-4">
+        <div className="flex flex-wrap items-center justify-center gap-4 md:gap-16 mt-6">
           {companies.map(({ id, name, img, nameImg }) => {
             return (
               <div
