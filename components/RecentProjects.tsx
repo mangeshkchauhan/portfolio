@@ -12,7 +12,7 @@ const ProjectCard = ({ project }: { project: any }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="group relative overflow-hidden rounded-2xl bg-black-100 border border-white/[0.1] hover:border-purple/30 transition-all duration-300 hover:shadow-xl hover:shadow-purple/10"
+      className="group relative overflow-hidden rounded-2xl bg-black border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
     >
       {/* Project Image */}
       <div className="relative h-40 overflow-hidden">
@@ -28,11 +28,11 @@ const ProjectCard = ({ project }: { project: any }) => {
 
       {/* Project Content */}
       <div className="p-6">
-        <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple transition-colors">
+        <h3 className="text-lg font-semibold text-white mb-2 font-courier">
           {project.title}
         </h3>
         
-        <p className="text-white-100 text-sm mb-4 line-clamp-2 leading-relaxed">
+        <p className="text-white/80 text-sm mb-4 line-clamp-2 leading-relaxed font-courier">
           {project.description}
         </p>
 
@@ -64,7 +64,7 @@ const ProjectCard = ({ project }: { project: any }) => {
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-1.5 bg-purple/20 hover:bg-purple/30 border border-purple/40 rounded-lg text-purple text-sm transition-all duration-200 hover:scale-105"
+              className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white text-sm transition-all duration-200 hover:scale-105"
             >
               <FaExternalLinkAlt className="text-xs" />
               <span>Live</span>
@@ -98,7 +98,7 @@ const RecentProjects = () => {
       >
         <h1 className="heading mb-4">
           A small selection of{" "}
-          <span className="text-purple">recent projects</span>
+          <span className="text-white">recent projects</span>
         </h1>
         <p className="text-white-100 max-w-2xl mx-auto text-base">
           Here are some of the projects I&apos;ve worked on recently, showcasing different technologies and problem-solving approaches.

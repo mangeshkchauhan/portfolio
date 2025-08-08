@@ -44,29 +44,28 @@ const Hero = () => {
 
   return (
     <div className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Enhanced Spotlight Effects */}
+      {/* Subtle Spotlight Effects (desaturated) */}
       <div className="absolute inset-0 z-0">
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-          fill="white"
+          fill="#ffffff"
         />
         <Spotlight
           className="top-10 left-full md:left-full h-[80vh] w-[70vw] md:w-[50vw]"
-          fill="purple"
+          fill="#ffffff"
         />
         <Spotlight 
           className="top-28 left-40 md:left-80 h-[80vh] w-[60vw] md:w-[50vw]" 
-          fill="blue" 
+          fill="#ffffff" 
         />
         
-        {/* Additional ambient lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[300px] sm:h-[300px] lg:w-[500px] lg:h-[500px] bg-purple/10 rounded-full blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute top-1/4 right-1/4 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] lg:w-[300px] lg:h-[300px] bg-blue-500/10 rounded-full blur-3xl opacity-30 animate-pulse delay-1000" />
+        {/* Minimal ambient lighting */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] lg:w-[520px] lg:h-[520px] bg-white/5 rounded-full blur-3xl opacity-10" />
       </div>
 
-      {/* Enhanced Grid Background */}
-      <div className="absolute inset-0 w-full bg-black-100 bg-grid-white/[0.03] z-0">
-        <div className="absolute pointer-events-none inset-0 bg-black-100 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      {/* Subtle Grid Background */}
+      <div className="absolute inset-0 w-full bg-black bg-grid-white/[0.02] z-0">
+        <div className="absolute pointer-events-none inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
       </div>
 
       {/* Main Content */}
@@ -85,9 +84,9 @@ const Hero = () => {
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full bg-gradient-to-r from-purple/20 to-blue-500/20 border border-purple/30 backdrop-blur-sm"
+              className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
             >
-              <span className="uppercase tracking-wider sm:tracking-widest text-xs sm:text-sm font-medium text-blue-100">
+              <span className="uppercase tracking-wider sm:tracking-widest text-xs sm:text-sm font-medium text-white/60">
                 <span className="hidden sm:inline">👋 Hi, I&apos;m </span>
                 <span className="sm:hidden">👋 </span>
                 Mangesh Kumar Chauhan
@@ -98,7 +97,7 @@ const Hero = () => {
           {/* Enhanced Main Title */}
           <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
             <TextGenerateEffect
-              className="text-center text-2xl sm:text-[32px] md:text-5xl lg:text-6xl leading-tight sm:leading-tight"
+              className="text-center text-2xl sm:text-[32px] md:text-5xl lg:text-6xl leading-tight sm:leading-tight font-courier"
               words="Crafting Concepts into Effortless User Experiences"
             />
           </motion.div>
@@ -107,8 +106,8 @@ const Hero = () => {
           <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
             <p className="text-center md:tracking-wider text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-sm sm:max-w-lg md:max-w-2xl leading-relaxed px-2 sm:px-0">
               Full-stack developer specializing in{" "}
-              <span className="text-purple font-semibold">React</span> and{" "}
-              <span className="text-purple font-semibold">React Native</span>.
+              <span className="text-white font-semibold">React</span> and{" "}
+              <span className="text-white font-semibold">React Native</span>.
               I build scalable applications with modern technologies and clean, efficient code.
             </p>
           </motion.div>
@@ -126,8 +125,8 @@ const Hero = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5 + index * 0.1 }}
-                whileHover={{ scale: 1.1, color: "#CBACF9" }}
-                className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-full text-gray-400 hover:text-purple transition-all cursor-default"
+                whileHover={{ scale: 1.05 }}
+                className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-full text-gray-300"
               >
                 {skill}
               </motion.span>
@@ -154,7 +153,7 @@ const Hero = () => {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-transparent border-2 border-purple/50 text-purple hover:bg-purple/10 rounded-lg font-medium transition-all duration-300 hover:border-purple text-sm sm:text-base w-full sm:w-auto"
+                className="flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/5 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
               >
                 <FaDownload className="text-sm" />
                 <span className="hidden sm:inline">Download Resume</span>
@@ -207,13 +206,13 @@ const Hero = () => {
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute top-1/4 left-10 w-20 h-20 bg-purple/10 rounded-full blur-xl opacity-60 hidden lg:block z-0"
+        className="absolute top-1/4 left-10 w-20 h-20 bg-white/5 rounded-full blur-xl opacity-10 hidden lg:block z-0"
       />
       <motion.div
         variants={floatingVariants}
         initial="initial"
         animate="animate"
-        className="absolute bottom-1/4 right-10 w-16 h-16 bg-blue-500/10 rounded-full blur-xl opacity-60 hidden lg:block z-0"
+        className="absolute bottom-1/4 right-10 w-16 h-16 bg-white/5 rounded-full blur-xl opacity-10 hidden lg:block z-0"
         style={{ animationDelay: "1s" }}
       />
     </div>

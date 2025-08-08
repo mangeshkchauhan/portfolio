@@ -37,15 +37,15 @@ const TimezoneClock: React.FC<TimezoneClockProps> = ({ city, timezone, position,
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="bg-black/60 backdrop-blur-sm border border-purple/40 rounded-md p-1.5 text-center min-w-[60px] shadow-lg">
+      <div className="bg-black/70 backdrop-blur-sm border border-white/10 rounded-md p-1.5 text-center min-w-[60px] shadow-lg">
         <div className="text-white text-[10px] font-semibold mb-0.5">{city}</div>
-        <div className="text-purple text-xs font-mono">{time}</div>
+        <div className="text-white/70 text-xs font-mono">{time}</div>
       </div>
       <motion.div
-        className="absolute -inset-0.5 bg-purple/20 rounded-md -z-10"
+        className="absolute -inset-0.5 bg-white/5 rounded-md -z-10"
         animate={{ 
           scale: [1, 1.05, 1],
-          opacity: [0.2, 0.4, 0.2]
+          opacity: [0.1, 0.2, 0.1]
         }}
         transition={{ 
           duration: 3,
@@ -73,10 +73,10 @@ const WorldMap: React.FC = () => {
       {/* Simplified background grid */}
       <div className="absolute inset-0 opacity-10 z-0">
         <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
-          {Array.from({ length: 48 }).map((_, i) => (
+           {Array.from({ length: 48 }).map((_, i) => (
             <motion.div
               key={i}
-              className="border border-purple/20"
+               className="border border-white/5"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 0.5, 0] }}
               transition={{
@@ -104,7 +104,7 @@ const WorldMap: React.FC = () => {
           <motion.path
             d="M 150 100 Q 200 80 250 100 Q 300 90 350 110 Q 400 100 450 120 Q 500 110 550 130 Q 600 120 650 140 L 650 200 Q 600 190 550 200 Q 500 210 450 200 Q 400 190 350 180 Q 300 190 250 180 Q 200 170 150 160 Z"
             fill="url(#worldGradient)"
-            stroke="rgba(139, 92, 246, 0.3)"
+            stroke="rgba(255, 255, 255, 0.15)"
             strokeWidth="1"
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
@@ -118,7 +118,7 @@ const WorldMap: React.FC = () => {
             rx="40"
             ry="60"
             fill="url(#worldGradient)"
-            stroke="rgba(139, 92, 246, 0.3)"
+            stroke="rgba(255, 255, 255, 0.15)"
             strokeWidth="1"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -131,7 +131,7 @@ const WorldMap: React.FC = () => {
             rx="60"
             ry="40"
             fill="url(#worldGradient)"
-            stroke="rgba(139, 92, 246, 0.3)"
+            stroke="rgba(255, 255, 255, 0.15)"
             strokeWidth="1"
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
@@ -140,9 +140,9 @@ const WorldMap: React.FC = () => {
 
           <defs>
             <linearGradient id="worldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="rgba(139, 92, 246, 0.1)" />
-              <stop offset="50%" stopColor="rgba(139, 92, 246, 0.2)" />
-              <stop offset="100%" stopColor="rgba(139, 92, 246, 0.1)" />
+              <stop offset="0%" stopColor="rgba(255, 255, 255, 0.05)" />
+              <stop offset="50%" stopColor="rgba(255, 255, 255, 0.1)" />
+              <stop offset="100%" stopColor="rgba(255, 255, 255, 0.05)" />
             </linearGradient>
           </defs>
         </motion.svg>
@@ -169,7 +169,7 @@ const WorldMap: React.FC = () => {
               y1={`${parseFloat(timezones[index].position.top)}%`}
               x2={`${parseFloat(timezones[index + 1].position.left)}%`}
               y2={`${parseFloat(timezones[index + 1].position.top)}%`}
-              stroke="rgba(139, 92, 246, 0.2)"
+              stroke="rgba(255, 255, 255, 0.1)"
               strokeWidth="1"
               strokeDasharray="3,6"
               initial={{ pathLength: 0, opacity: 0 }}
@@ -189,7 +189,7 @@ const WorldMap: React.FC = () => {
         {Array.from({ length: 8 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-purple/30 rounded-full"
+            className="absolute w-0.5 h-0.5 bg-white/20 rounded-full"
             style={{
               top: `${20 + Math.random() * 60}%`,
               left: `${10 + Math.random() * 80}%`,
@@ -216,8 +216,8 @@ const WorldMap: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 3, duration: 1 }}
       >
-        <div className="bg-black/30 backdrop-blur-sm border border-purple/20 rounded-md px-2 py-1">
-          <div className="text-purple text-xs font-semibold">Available 24/7</div>
+        <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
+          <div className="text-white/80 text-xs font-semibold font-courier">Available 24/7</div>
           <div className="text-white/60 text-[10px]">Across all timezones</div>
         </div>
       </motion.div>

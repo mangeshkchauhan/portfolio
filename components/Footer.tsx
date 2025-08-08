@@ -43,7 +43,7 @@ const Footer = () => {
   return (
     <footer className="w-full relative overflow-hidden" id="contact">
       {/* Background Grid */}
-      <div className="w-full absolute left-0 top-0 min-h-full opacity-20">
+      <div className="w-full absolute left-0 top-0 min-h-full opacity-10">
         <Image
           src="/footer-grid.svg"
           alt="grid"
@@ -53,7 +53,7 @@ const Footer = () => {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black-100 via-black-100/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
 
       <motion.div
         variants={containerVariants}
@@ -68,13 +68,13 @@ const Footer = () => {
             variants={itemVariants}
             className="heading lg:max-w-[45vw] mb-6"
           >
-            Ready to take <span className="text-purple">your</span> digital
+            Ready to take <span className="text-white">your</span> digital
             presence to the next level?
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-            className="text-white-200 text-lg max-w-2xl leading-relaxed mb-8"
+             className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8 font-courier"
           >
             Let&apos;s collaborate to bring your ideas to life. I&apos;m available for freelance projects, 
             full-time opportunities, and exciting collaborations.
@@ -97,7 +97,7 @@ const Footer = () => {
             
             {/* About Section */}
             <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="text-xl font-bold text-white mb-4">About Me</h3>
+              <h3 className="text-xl font-bold text-white mb-4 font-special">About Me</h3>
               <p className="text-gray-300 leading-relaxed mb-6">
                 Full-stack developer passionate about creating innovative solutions 
                 that make a difference. Specialized in React, React Native, and modern web technologies.
@@ -105,12 +105,12 @@ const Footer = () => {
               
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="text-2xl font-bold text-purple">4+</div>
+                 <div className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
+                  <div className="text-2xl font-bold text-white">4+</div>
                   <div className="text-gray-400 text-sm">Years Experience</div>
                 </div>
                 <div className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="text-2xl font-bold text-purple">15+</div>
+                  <div className="text-2xl font-bold text-white">15+</div>
                   <div className="text-gray-400 text-sm">Projects Completed</div>
                 </div>
               </div>
@@ -122,7 +122,7 @@ const Footer = () => {
                   {techStack.map((tech, index) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-purple/10 border border-purple/20 rounded-full text-purple text-sm"
+                      className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/80 text-sm"
                     >
                       {tech}
                     </span>
@@ -133,13 +133,13 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-white mb-4">Quick Links</h3>
+              <h3 className="text-xl font-bold text-white mb-4 font-special">Quick Links</h3>
               <ul className="space-y-3">
                 {navItems.map((item) => (
                   <li key={item.name}>
                     <Link
                       href={item.link}
-                      className="text-gray-300 hover:text-purple transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform">
                         {item.name}
@@ -152,7 +152,7 @@ const Footer = () => {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-purple transition-colors duration-300 flex items-center gap-2 group"
+                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <span className="group-hover:translate-x-1 transition-transform">
                       Resume
@@ -164,15 +164,15 @@ const Footer = () => {
 
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-white mb-4">Get In Touch</h3>
+              <h3 className="text-xl font-bold text-white mb-4 font-special">Get In Touch</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <FaEnvelope className="text-purple mt-1 flex-shrink-0" />
+                  <FaEnvelope className="text-white/80 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300 text-sm">Email</p>
                     <a
                       href="mailto:mangeshkrm123@gmail.com"
-                      className="text-white hover:text-purple transition-colors"
+                      className="text-white hover:text-white/80 transition-colors"
                     >
                       mangeshkrm123@gmail.com
                     </a>
@@ -180,7 +180,7 @@ const Footer = () => {
                 </div>
                 
                 <div className="flex items-start gap-3">
-                  <FaMapMarkerAlt className="text-purple mt-1 flex-shrink-0" />
+                  <FaMapMarkerAlt className="text-white/80 mt-1 flex-shrink-0" />
                   <div>
                     <p className="text-gray-300 text-sm">Location</p>
                     <p className="text-white">India (Remote Available)</p>
@@ -208,7 +208,7 @@ const Footer = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-purple/20 border border-white/10 hover:border-purple/30 rounded-lg transition-all duration-300 group"
+                      className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-300 group"
                     >
                       <Image
                         src={social.img}
@@ -233,11 +233,11 @@ const Footer = () => {
               <p className="text-gray-400 text-sm">
                 © {new Date().getFullYear()} Mangesh Kumar Chauhan. All rights reserved.
               </p>
-              {/* <div className="flex gap-6 text-sm">
-                <a href="#" className="text-gray-400 hover:text-purple transition-colors">
+                {/* <div className="flex gap-6 text-sm">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   Privacy Policy
                 </a>
-                <a href="#" className="text-gray-400 hover:text-purple transition-colors">
+                <a href="#" className="text-gray-400 hover:text-white transition-colors">
                   Terms of Service
                 </a>
               </div> */}
@@ -248,7 +248,7 @@ const Footer = () => {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 bg-purple/10 hover:bg-purple/20 border border-purple/30 rounded-lg text-purple text-sm font-medium transition-all duration-300"
+            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg text-white text-sm font-medium transition-all duration-300"
             >
               <FaArrowUp size={12} />
               Back to Top
@@ -257,8 +257,8 @@ const Footer = () => {
         </div>
 
         {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-purple/5 rounded-full blur-3xl opacity-60"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-500/5 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-white/5 rounded-full blur-3xl opacity-10"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl opacity-10"></div>
       </motion.div>
     </footer>
   );

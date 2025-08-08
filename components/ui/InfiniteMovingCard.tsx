@@ -23,26 +23,40 @@ export const InfiniteMovingCards = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const scrollerRef = React.useRef<HTMLUListElement>(null);
 
-  useEffect(() => {
-    addAnimation();
-  }, []);
   const [start, setStart] = useState(false);
-  function addAnimation() {
-    if (containerRef.current && scrollerRef.current) {
-      const scrollerContent = Array.from(scrollerRef.current.children);
+  const hasInitRef = React.useRef(false);
 
+  useEffect(() => {
+    if (!(containerRef.current && scrollerRef.current)) return;
+
+    // Duplicate items once to enable seamless scroll
+    if (!hasInitRef.current) {
+      const scrollerContent = Array.from(scrollerRef.current.children);
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
+        scrollerRef.current!.appendChild(duplicatedItem);
       });
-
-      getDirection();
-      getSpeed();
-      setStart(true);
+      hasInitRef.current = true;
     }
-  }
+
+    // Apply direction
+    if (direction === "left") {
+      containerRef.current.style.setProperty("--animation-direction", "forwards");
+    } else {
+      containerRef.current.style.setProperty("--animation-direction", "reverse");
+    }
+
+    // Apply speed
+    if (speed === "fast") {
+      containerRef.current.style.setProperty("--animation-duration", "20s");
+    } else if (speed === "normal") {
+      containerRef.current.style.setProperty("--animation-duration", "40s");
+    } else {
+      containerRef.current.style.setProperty("--animation-duration", "80s");
+    }
+
+    setStart(true);
+  }, [direction, speed]);
   const getDirection = () => {
     if (containerRef.current) {
       if (direction === "left") {
@@ -87,34 +101,44 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-700 p-4 sm:p-6 md:p-8 lg:p-12 xl:p-16"
-            style={{
-              background: "rgb(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-            }}
+            className="group w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative flex-shrink-0 rounded-2xl border border-white/10 bg-black/60 p-5 sm:p-6 md:p-8 lg:p-10 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-black/70 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),0_10px_25px_rgba(0,0,0,0.45)]"
             key={idx}
           >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 leading-[1.6] text-white text-sm sm:text-base md:text-lg font-normal">
+            {/* Decorative glows */}
+            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(80%_50%_at_50%_-20%,rgba(255,255,255,0.12),transparent)]" />
+            <div className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+            <blockquote className="relative z-10">
+              {/* Quote mark */}
+              <div className="mb-3 sm:mb-4 text-white/25">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6 sm:w-7 sm:h-7"
+                  aria-hidden
+                >
+                  <path d="M7.17 6C4.86 6 3 7.86 3 10.17 3 12.49 4.86 14.34 7.17 14.34c.45 0 .88-.08 1.28-.22-.51 2.09-2.17 3.61-4.45 4.04a.75.75 0 0 0 .14 1.49c4.12-.8 6.86-3.94 6.86-8.15C11 8.2 9.14 6 7.17 6Zm9.66 0C14.52 6 12.66 7.86 12.66 10.17c0 2.32 1.86 4.17 4.17 4.17.45 0 .88-.08 1.28-.22-.51 2.09-2.17 3.61-4.45 4.04a.75.75 0 0 0 .14 1.49c4.12-.8 6.86-3.94 6.86-8.15C21 8.2 19.14 6 16.83 6Z" />
+                </svg>
+              </div>
+
+              <p className="leading-relaxed text-white/90 text-base sm:text-lg md:text-xl font-normal font-courier">
                 {item.quote}
-              </span>
-              <div className="relative z-20 mt-4 sm:mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <div className="me-3"></div>
+              </p>
+
+              <div className="mt-6 sm:mt-8">
+                <div className="h-px w-full bg-white/10" />
+                <div className="mt-4 flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-white/30" />
                   <div className="flex flex-col">
-                    <span className="text-lg sm:text-xl md:text-2xl leading-[1.6] text-white font-bold">
+                    <span className="text-base sm:text-lg md:text-xl leading-tight text-white font-bold font-special">
                       {item.name}
                     </span>
-                    <span className="text-xs sm:text-sm md:text-base leading-[1.6] text-white-200 font-normal">
+                    <span className="text-xs sm:text-sm md:text-base leading-snug text-white/70 font-normal font-courier">
                       {item.title}
                     </span>
                   </div>
-                </span>
+                </div>
               </div>
             </blockquote>
           </li>

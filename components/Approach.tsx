@@ -42,9 +42,9 @@ const Approach = () => {
         "User Persona Development",
         "Technical Planning"
       ],
-      color: "from-purple/20 to-blue-500/20",
-      borderColor: "border-purple/30",
-      iconBg: "bg-purple/20"
+      color: "from-white/5 to-transparent",
+      borderColor: "border-white/10",
+      iconBg: "bg-white/5"
     },
     {
       phase: "02", 
@@ -58,9 +58,9 @@ const Approach = () => {
         "Responsive Development",
         "Performance Optimization"
       ],
-      color: "from-emerald-500/20 to-teal-500/20",
-      borderColor: "border-emerald-500/30",
-      iconBg: "bg-emerald-500/20"
+      color: "from-white/5 to-transparent",
+      borderColor: "border-white/10",
+      iconBg: "bg-white/5"
     },
     {
       phase: "03",
@@ -74,9 +74,9 @@ const Approach = () => {
         "Deployment & Launch",
         "Ongoing Support"
       ],
-      color: "from-orange-500/20 to-red-500/20", 
-      borderColor: "border-orange-500/30",
-      iconBg: "bg-orange-500/20"
+      color: "from-white/5 to-transparent", 
+      borderColor: "border-white/10",
+      iconBg: "bg-white/5"
     }
   ];
 
@@ -114,8 +114,8 @@ const Approach = () => {
       >
         {/* Section Header */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="heading mb-4">
-            My <span className="text-purple">approach</span> to development
+          <h1 className="heading mb-4 font-special">
+            My <span className="text-white">approach</span> to development
           </h1>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
             A systematic methodology that ensures every project is delivered with precision, 
@@ -133,7 +133,7 @@ const Approach = () => {
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}
-              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${approach.color} border ${approach.borderColor} backdrop-blur-sm p-8 hover:shadow-2xl hover:shadow-purple/10 transition-all duration-500`}
+              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${approach.color} border ${approach.borderColor} backdrop-blur-sm p-8 transition-all duration-500`}
             >
               {/* Phase Number */}
               <div className="absolute top-4 right-4 text-6xl font-bold text-white/5 group-hover:text-white/10 transition-colors duration-500">
@@ -142,7 +142,7 @@ const Approach = () => {
 
               {/* Icon */}
               <motion.div 
-                className={`inline-flex items-center justify-center w-16 h-16 ${approach.iconBg} border ${approach.borderColor} rounded-2xl mb-6 text-white group-hover:scale-110 transition-transform duration-300`}
+                className={`inline-flex items-center justify-center w-16 h-16 ${approach.iconBg} border ${approach.borderColor} rounded-2xl mb-6 text-white`}
                 whileHover={{ rotate: 5 }}
               >
                 {approach.icon}
@@ -151,15 +151,15 @@ const Approach = () => {
               {/* Content */}
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple transition-colors duration-300">
+                  <h3 className="text-2xl font-bold text-white mb-2">
                     {approach.title}
                   </h3>
-                  <p className="text-purple/80 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-white/60 font-medium text-sm uppercase tracking-wider">
                     {approach.subtitle}
                   </p>
                 </div>
 
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed font-courier">
                   {approach.description}
                 </p>
 
@@ -173,7 +173,7 @@ const Approach = () => {
                       transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
                       className="flex items-center gap-3 text-sm text-gray-400"
                     >
-                      <FaCheckCircle className="text-purple text-xs flex-shrink-0" />
+                       <FaCheckCircle className="text-white/70 text-xs flex-shrink-0" />
                       <span>{feature}</span>
                     </motion.div>
                   ))}
@@ -181,7 +181,7 @@ const Approach = () => {
               </div>
 
               {/* Hover Effect Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+              <div className="absolute inset-0" />
             </motion.div>
           ))}
         </motion.div>
@@ -190,7 +190,7 @@ const Approach = () => {
         <motion.div variants={itemVariants}>
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-white mb-4">
-              Core <span className="text-purple">Principles</span>
+              Core <span className="text-white">Principles</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">
               The fundamental values that guide every line of code I write
@@ -206,16 +206,16 @@ const Approach = () => {
                   scale: 1.05,
                   transition: { duration: 0.2 }
                 }}
-                className="group p-6 bg-gradient-to-br from-neutral-900/50 to-neutral-800/30 border border-neutral-700/50 rounded-xl backdrop-blur-sm hover:border-purple/30 transition-all duration-300"
+                 className="group p-6 bg-gradient-to-br from-neutral-900/50 to-neutral-800/30 border border-white/10 rounded-xl backdrop-blur-sm transition-all duration-300"
               >
                 <motion.div 
-                  className="inline-flex items-center justify-center w-12 h-12 bg-purple/20 border border-purple/30 rounded-lg mb-4 text-purple group-hover:scale-110 transition-transform duration-300"
+                  className="inline-flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-lg mb-4 text-white/80"
                   whileHover={{ rotate: 10 }}
                 >
                   {principle.icon}
                 </motion.div>
                 
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-purple transition-colors duration-300">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {principle.title}
                 </h3>
                 
@@ -230,7 +230,7 @@ const Approach = () => {
         {/* Call to Action */}
         <motion.div 
           variants={itemVariants}
-          className="text-center mt-16 p-8 bg-gradient-to-r from-purple/10 to-blue-500/10 border border-purple/20 rounded-2xl backdrop-blur-sm"
+          className="text-center mt-16 p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm"
         >
           <h3 className="text-2xl font-bold text-white mb-4">
             Ready to Start Your Project?
@@ -242,7 +242,7 @@ const Approach = () => {
              href="#contact"
              whileHover={{ scale: 1.05 }}
              whileTap={{ scale: 0.95 }}
-             className="inline-flex items-center gap-2 px-8 py-3 bg-purple hover:bg-purple/80 rounded-lg text-white font-medium transition-all duration-200 hover:shadow-lg hover:shadow-purple/25"
+             className="inline-flex items-center gap-2 px-8 py-3 bg-white/10 hover:bg-white/20 rounded-lg text-white font-medium transition-all duration-200"
            >
              <FaProjectDiagram />
              Let&apos;s Collaborate

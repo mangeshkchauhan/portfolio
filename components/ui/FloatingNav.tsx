@@ -84,8 +84,8 @@ export const FloatingNav = ({
             animate={{ y: 0, opacity: 1 }}
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={cn(
-              "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/[0.1] rounded-full shadow-lg backdrop-blur-lg bg-black-100/80 z-[5000] px-6 py-3 items-center justify-center space-x-4",
+              className={cn(
+                "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/10 rounded-full shadow-lg backdrop-blur-lg bg-black/70 z-[5000] px-6 py-3 items-center justify-center space-x-4",
               className
             )}
           >
@@ -105,7 +105,7 @@ export const FloatingNav = ({
                       className={cn(
                         "relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center space-x-2",
                         isActive
-                          ? "text-purple bg-purple/10 border border-purple/20"
+                          ? "text-white bg-white/10 border border-white/20"
                           : "text-neutral-300 hover:text-white hover:bg-white/5"
                       )}
                     >
@@ -116,7 +116,7 @@ export const FloatingNav = ({
                       {isActive && (
                         <motion.div
                           layoutId="active-pill"
-                          className="absolute inset-0 rounded-full bg-purple/20 border border-purple/30"
+                          className="absolute inset-0 rounded-full bg-white/10 border border-white/20"
                           transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                         />
                       )}
@@ -132,7 +132,7 @@ export const FloatingNav = ({
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 text-white hover:text-purple transition-colors"
+                className="p-2 text-white hover:text-white/80 transition-colors"
               >
                 {mobileMenuOpen ? <FaTimes size={16} /> : <FaBars size={16} />}
               </motion.button>
@@ -145,13 +145,13 @@ export const FloatingNav = ({
             >
               <a
                 href="mailto:mangeshkrm123@gmail.com"
-                className="relative flex items-center space-x-2 border border-purple/50 text-purple hover:text-white hover:bg-purple/20 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 group"
+                className="relative flex items-center space-x-2 border border-white/20 text-white hover:text-white hover:bg-white/10 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 group"
               >
                 <FaEnvelope size={12} />
                 <span className="hidden sm:inline">Contact</span>
                 <span className="sm:hidden">Email</span>
                 <motion.span
-                  className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-purple to-transparent h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                  className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-white to-transparent h-px opacity-0 group-hover:opacity-100 transition-opacity"
                   layoutId="contact-underline"
                 />
               </a>
@@ -187,7 +187,7 @@ export const FloatingNav = ({
                         className={cn(
                           "flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300",
                           isActive
-                            ? "text-purple bg-purple/10 border border-purple/20"
+                            ? "text-white bg-white/10 border border-white/20"
                             : "text-neutral-300 hover:text-white hover:bg-white/5"
                         )}
                       >
@@ -209,7 +209,7 @@ export const FloatingNav = ({
                 >
                   <a
                     href="mailto:mangeshkrm123@gmail.com"
-                    className="flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium text-purple hover:text-white hover:bg-purple/10 transition-all duration-300"
+                    className="flex items-center space-x-3 px-4 py-3 rounded-xl text-base font-medium text-white hover:text-white/80 hover:bg-white/5 transition-all duration-300"
                   >
                     <FaEnvelope />
                     <span>Contact Me</span>
