@@ -213,9 +213,21 @@ export const projects: Project[] = [
     title: "smartGPT - AI Document Chat Platform",
     description: "Intelligent PDF document analysis with conversational AI interface",
     longDescription: "smartGPT revolutionizes document interaction by enabling natural language conversations with PDF documents. Built with cutting-edge AI technology, it allows users to upload documents and ask questions, receiving intelligent, contextual responses. The platform features advanced document parsing, semantic search, and multi-document analysis capabilities.",
+    features: [
+      { title: "PDF Document Upload", description: "Seamlessly upload and process PDF documents of any size" },
+      { title: "AI-Powered Chat", description: "Natural language interface for document queries" },
+      { title: "Context-Aware Responses", description: "Intelligent responses based on document content" },
+      { title: "Multi-Document Support", description: "Chat with multiple documents simultaneously" },
+      { title: "Secure Authentication", description: "Protected user sessions with Kinde Auth" }
+    ],
     category: 'ai',
     status: 'in-progress',
     featured: true,
+    learnings: [
+      "Advanced integration with OpenAI APIs",
+      "Document processing optimization techniques",
+      "Real-time data streaming implementation"
+    ],
     images: {
       thumbnail: "/p4.png",
       gallery: ["/p4.png", "/p4.svg"]
@@ -226,13 +238,6 @@ export const projects: Project[] = [
       { name: "Tailwind CSS", icon: "/tail.svg", category: "frontend" },
       { name: "Kinde Auth", icon: "/kinde.svg", category: "backend" },
       { name: "OpenAI API", icon: "/next.svg", category: "ai" }
-    ],
-    features: [
-      { title: "PDF Document Upload", description: "Seamlessly upload and process PDF documents of any size" },
-      { title: "AI-Powered Chat", description: "Natural language interface for document queries" },
-      { title: "Context-Aware Responses", description: "Intelligent responses based on document content" },
-      { title: "Multi-Document Support", description: "Chat with multiple documents simultaneously" },
-      { title: "Secure Authentication", description: "Protected user sessions with Kinde Auth" }
     ],
     links: {
       live: "https://smart-gpt-phi.vercel.app/",
@@ -249,11 +254,6 @@ export const projects: Project[] = [
       "Optimizing AI response times for large documents",
       "Managing context windows for long conversations"
     ],
-    learnings: [
-      "Advanced integration with OpenAI APIs",
-      "Document processing optimization techniques",
-      "Real-time data streaming implementation"
-    ]
   },
   {
     id: 3,
