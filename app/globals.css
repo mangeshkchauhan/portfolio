@@ -4,65 +4,85 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 0 0% 100%;
+    --primary: 220 100% 70%;
     --primary-foreground: 0 0% 0%;
 
-    --secondary: 0 0% 6%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 0 0% 8%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 7%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 0 0% 10%;
+    --accent: 220 70% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 50%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    --border: 0 0% 18%;
+    --input: 0 0% 12%;
+    --ring: 220 70% 60%;
 
     --radius: 0.5rem;
+    
+    /* Custom semantic colors */
+    --brand-primary: 220 100% 70%;
+    --brand-secondary: 260 80% 65%;
+    --text-primary: 0 0% 98%;
+    --text-secondary: 0 0% 75%;
+    --text-muted: 0 0% 55%;
+    --surface-primary: 0 0% 3%;
+    --surface-secondary: 0 0% 6%;
+    --surface-tertiary: 0 0% 9%;
   }
 
   .dark {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
+    --background: 0 0% 1%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 0%;
-    --card-foreground: 0 0% 100%;
+    --card: 0 0% 2%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 0%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 0 0% 100%;
+    --primary: 220 100% 70%;
     --primary-foreground: 0 0% 0%;
 
     --secondary: 0 0% 6%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 0 0% 92%;
 
-    --muted: 0 0% 6%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 0 0% 5%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 0 0% 10%;
+    --accent: 220 70% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 40%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    --border: 0 0% 16%;
+    --input: 0 0% 10%;
+    --ring: 220 70% 60%;
+    
+    /* Enhanced dark theme colors */
+    --brand-primary: 220 100% 70%;
+    --brand-secondary: 260 80% 65%;
+    --text-primary: 0 0% 98%;
+    --text-secondary: 0 0% 78%;
+    --text-muted: 0 0% 58%;
+    --surface-primary: 0 0% 2%;
+    --surface-secondary: 0 0% 5%;
+    --surface-tertiary: 0 0% 8%;
   }
 }
 
@@ -72,15 +92,30 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 
-  /* Utility families */
+  /* Typography families */
+  .font-sans {
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+  
+  .font-serif {
+    font-family: var(--font-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  }
+
+  /* Legacy support for existing components */
   .font-courier {
-    font-family: var(--font-courier), "Courier New", Courier, monospace;
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
   }
   .font-special {
-    font-family: var(--font-special), ui-serif, Georgia, serif;
+    font-family: var(--font-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
   }
   button {
     @apply active:outline-none;
@@ -92,8 +127,76 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 
+  /* Typography Scale */
+  .text-display-xl {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-display-lg {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .text-display-md {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .text-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  .text-body-md {
+    font-size: 1rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+
+  .text-body-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .text-caption {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* Enhanced gradients */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
+  }
+
+  .gradient-surface {
+    background: linear-gradient(135deg, hsl(var(--surface-primary)) 0%, hsl(var(--surface-secondary)) 100%);
+  }
+
   .black-gradient {
-    background: linear-gradient(90deg, #1b0e06 0%, #061413 100%);
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  }
+
+  /* Glass morphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   /* Line clamp utilities */
@@ -102,6 +205,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
   }
 
   .line-clamp-2 {
@@ -109,6 +213,15 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
   }
 
   /* Hide scrollbar */

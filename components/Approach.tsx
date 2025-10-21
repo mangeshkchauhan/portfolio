@@ -114,10 +114,10 @@ const Approach = () => {
       >
         {/* Section Header */}
         <motion.div variants={itemVariants} className="text-center mb-16">
-          <h1 className="heading mb-4 font-special">
-            My <span className="text-white">approach</span> to development
+          <h1 className="text-display-md font-serif font-bold mb-6 text-text-primary">
+            My <span className="text-brand-primary">approach</span> to development
           </h1>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed">
+          <p className="text-text-secondary max-w-2xl mx-auto text-body-lg leading-relaxed">
             A systematic methodology that ensures every project is delivered with precision, 
             quality, and attention to detail.
           </p>
@@ -133,7 +133,7 @@ const Approach = () => {
                 scale: 1.02,
                 transition: { duration: 0.2 }
               }}
-              className={`group relative overflow-hidden rounded-2xl bg-gradient-to-br ${approach.color} border ${approach.borderColor} backdrop-blur-sm p-8 transition-all duration-500`}
+              className={`group relative overflow-hidden rounded-2xl glass border ${approach.borderColor} p-8 transition-all duration-500`}
             >
               {/* Phase Number */}
               <div className="absolute top-4 right-4 text-6xl font-bold text-white/5 group-hover:text-white/10 transition-colors duration-500">
@@ -151,15 +151,15 @@ const Approach = () => {
               {/* Content */}
               <div className="space-y-4">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">
+                  <h3 className="text-2xl font-bold text-text-primary mb-2 font-serif">
                     {approach.title}
                   </h3>
-                  <p className="text-white/60 font-medium text-sm uppercase tracking-wider">
+                  <p className="text-brand-primary font-medium text-caption">
                     {approach.subtitle}
                   </p>
                 </div>
 
-                <p className="text-gray-300 leading-relaxed font-courier">
+                <p className="text-text-secondary leading-relaxed text-body-md font-sans">
                   {approach.description}
                 </p>
 
@@ -171,7 +171,7 @@ const Approach = () => {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 + featureIndex * 0.1 }}
-                      className="flex items-center gap-3 text-sm text-gray-400"
+                      className="flex items-center gap-3 text-body-sm text-text-muted"
                     >
                        <FaCheckCircle className="text-white/70 text-xs flex-shrink-0" />
                       <span>{feature}</span>
@@ -189,10 +189,10 @@ const Approach = () => {
         {/* Development Principles */}
         <motion.div variants={itemVariants}>
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">
-              Core <span className="text-white">Principles</span>
+            <h2 className="text-3xl font-bold text-text-primary mb-4 font-serif">
+              Core <span className="text-brand-primary">Principles</span>
             </h2>
-            <p className="text-gray-400 max-w-xl mx-auto">
+            <p className="text-text-secondary max-w-xl mx-auto text-body-md">
               The fundamental values that guide every line of code I write
             </p>
           </div>
@@ -206,7 +206,7 @@ const Approach = () => {
                   scale: 1.05,
                   transition: { duration: 0.2 }
                 }}
-                 className="group p-6 bg-gradient-to-br from-neutral-900/50 to-neutral-800/30 border border-white/10 rounded-xl backdrop-blur-sm transition-all duration-300"
+                 className="group p-6 glass border-white/10 rounded-xl transition-all duration-300"
               >
                 <motion.div 
                   className="inline-flex items-center justify-center w-12 h-12 bg-white/5 border border-white/10 rounded-lg mb-4 text-white/80"
@@ -215,11 +215,11 @@ const Approach = () => {
                   {principle.icon}
                 </motion.div>
                 
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-lg font-semibold text-text-primary mb-2 font-serif">
                   {principle.title}
                 </h3>
                 
-                <p className="text-gray-400 text-sm leading-relaxed">
+                <p className="text-text-secondary text-body-sm leading-relaxed">
                   {principle.description}
                 </p>
               </motion.div>

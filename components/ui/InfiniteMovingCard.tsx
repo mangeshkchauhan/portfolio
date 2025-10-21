@@ -101,16 +101,16 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="group w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative flex-shrink-0 rounded-2xl border border-white/10 bg-black/60 p-5 sm:p-6 md:p-8 lg:p-10 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-black/70 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),0_10px_25px_rgba(0,0,0,0.45)]"
+            className="group w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative flex-shrink-0 rounded-2xl glass border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/30 hover:bg-black/70 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),0_10px_25px_rgba(0,0,0,0.45)]"
             key={idx}
           >
             {/* Decorative glows */}
-            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(80%_50%_at_50%_-20%,rgba(255,255,255,0.12),transparent)]" />
-            <div className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-[radial-gradient(80%_50%_at_50%_-20%,hsl(var(--brand-primary)/0.15),transparent)]" />
+            <div className="pointer-events-none absolute left-0 right-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent" />
 
             <blockquote className="relative z-10">
               {/* Quote mark */}
-              <div className="mb-3 sm:mb-4 text-white/25">
+              <div className="mb-3 sm:mb-4 text-brand-primary/40">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -122,19 +122,19 @@ export const InfiniteMovingCards = ({
                 </svg>
               </div>
 
-              <p className="leading-relaxed text-white/90 text-base sm:text-lg md:text-xl font-normal font-courier">
-                {item.quote}
+              <p className="leading-relaxed text-text-primary text-body-md sm:text-body-lg font-normal font-sans">
+                &ldquo;{item.quote}&rdquo;
               </p>
 
               <div className="mt-6 sm:mt-8">
-                <div className="h-px w-full bg-white/10" />
+                <div className="h-px w-full bg-gradient-to-r from-transparent via-brand-primary/20 to-transparent" />
                 <div className="mt-4 flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-white/30" />
+                  <div className="w-2 h-2 rounded-full bg-brand-primary/60" />
                   <div className="flex flex-col">
-                    <span className="text-base sm:text-lg md:text-xl leading-tight text-white font-bold font-special">
+                    <span className="text-base sm:text-lg font-semibold leading-tight text-text-primary font-serif">
                       {item.name}
                     </span>
-                    <span className="text-xs sm:text-sm md:text-base leading-snug text-white/70 font-normal font-courier">
+                    <span className="text-body-sm leading-snug text-text-secondary font-normal font-sans">
                       {item.title}
                     </span>
                   </div>

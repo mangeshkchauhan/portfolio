@@ -84,9 +84,9 @@ const Hero = () => {
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm"
+              className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full glass border-white/10"
             >
-              <span className="uppercase tracking-wider sm:tracking-widest text-xs sm:text-sm font-medium text-white/60">
+              <span className="text-caption font-medium text-text-muted">
                 <span className="hidden sm:inline">👋 Hi, I&apos;m </span>
                 <span className="sm:hidden">👋 </span>
                 Mangesh Kumar Chauhan
@@ -97,17 +97,17 @@ const Hero = () => {
           {/* Enhanced Main Title */}
           <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
             <TextGenerateEffect
-              className="text-center text-2xl sm:text-[32px] md:text-5xl lg:text-6xl leading-tight sm:leading-tight font-courier"
+              className="text-center text-display-md lg:text-display-lg font-serif font-semibold text-text-primary"
               words="Crafting Concepts into Effortless User Experiences"
             />
           </motion.div>
 
           {/* Enhanced Description */}
           <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-            <p className="text-center md:tracking-wider text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-sm sm:max-w-lg md:max-w-2xl leading-relaxed px-2 sm:px-0">
+            <p className="text-center text-body-lg md:text-xl text-text-secondary max-w-sm sm:max-w-lg md:max-w-2xl leading-relaxed px-2 sm:px-0">
               Full-stack developer specializing in{" "}
-              <span className="text-white font-semibold">React</span> and{" "}
-              <span className="text-white font-semibold">React Native</span>.
+              <span className="text-brand-primary font-semibold">React</span> and{" "}
+              <span className="text-brand-primary font-semibold">React Native</span>.
               I build scalable applications with modern technologies and clean, efficient code.
             </p>
           </motion.div>
@@ -126,7 +126,7 @@ const Hero = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-white/5 border border-white/10 rounded-full text-gray-300"
+                className="px-2 sm:px-3 py-1 text-xs sm:text-sm glass border-white/10 rounded-full text-text-secondary font-mono"
               >
                 {skill}
               </motion.span>

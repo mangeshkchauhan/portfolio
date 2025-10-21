@@ -66,15 +66,15 @@ const Footer = () => {
         <motion.div variants={itemVariants} className="flex flex-col items-center text-center mb-20">
           <motion.h1 
             variants={itemVariants}
-            className="heading lg:max-w-[45vw] mb-6"
+            className="text-display-md font-serif font-bold lg:max-w-[45vw] mb-6 text-text-primary"
           >
-            Ready to take <span className="text-white">your</span> digital
+            Ready to take <span className="text-brand-primary">your</span> digital
             presence to the next level?
           </motion.h1>
           
           <motion.p 
             variants={itemVariants}
-             className="text-white/70 text-lg max-w-2xl leading-relaxed mb-8 font-courier"
+             className="text-text-secondary text-body-lg max-w-2xl leading-relaxed mb-8 font-sans"
           >
             Let&apos;s collaborate to bring your ideas to life. I&apos;m available for freelance projects, 
             full-time opportunities, and exciting collaborations.
@@ -117,12 +117,12 @@ const Footer = () => {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-white font-medium mb-3">Tech Stack</h4>
+                <h4 className="text-text-primary font-medium mb-3 font-serif">Tech Stack</h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.map((tech, index) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/80 text-sm"
+                      className="px-3 py-1 glass border-white/10 rounded-full text-text-secondary text-body-sm font-mono"
                     >
                       {tech}
                     </span>
@@ -133,7 +133,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-white mb-4 font-special">Quick Links</h3>
+              <h3 className="text-xl font-bold text-text-primary mb-4 font-serif">Quick Links</h3>
               <ul className="space-y-3">
                 {navItems.map((item) => (
                   <li key={item.name}>
@@ -164,15 +164,15 @@ const Footer = () => {
 
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-white mb-4 font-special">Get In Touch</h3>
+              <h3 className="text-xl font-bold text-text-primary mb-4 font-serif">Get In Touch</h3>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <FaEnvelope className="text-white/80 mt-1 flex-shrink-0" />
+                  <FaEnvelope className="text-brand-primary mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300 text-sm">Email</p>
+                    <p className="text-text-muted text-body-sm">Email</p>
                     <a
                       href="mailto:mangeshkrm123@gmail.com"
-                      className="text-white hover:text-white/80 transition-colors"
+                      className="text-text-primary hover:text-brand-primary transition-colors font-mono"
                     >
                       mangeshkrm123@gmail.com
                     </a>

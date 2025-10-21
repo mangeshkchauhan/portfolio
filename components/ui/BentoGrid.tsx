@@ -87,13 +87,9 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        "row-span-1 relative overflow-hidden rounded-3xl border border-white/10 group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 bg-black/80 backdrop-blur-xl",
+        "row-span-1 relative overflow-hidden rounded-3xl glass-dark group/bento hover:shadow-xl transition duration-200 shadow-input dark:shadow-none justify-between flex flex-col space-y-4",
         className
       )}
-      style={{
-        background: "rgba(0,0,0,0.85)",
-        backgroundColor: "rgba(0,0,0,0.85)",
-      }}
     >
       <div className={`${id === 6 && "flex justify-center"} h-full`}>
         <div className="w-full h-full absolute">
@@ -131,11 +127,11 @@ export const BentoGridItem = ({
             "group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10"
           )}
         >
-          <div className="font-sans font-extralight md:max-w-32 md:text-xs lg:text-base text-sm text-white/70 z-10">
+          <div className="font-sans font-light md:max-w-32 text-body-sm lg:text-base text-text-muted z-10">
             {description}
           </div>
           <div
-            className={`font-sans text-lg lg:text-3xl max-w-96 font-bold z-10`}
+            className={`font-serif text-lg lg:text-3xl max-w-96 font-bold z-10 text-text-primary`}
           >
             {title}
           </div>

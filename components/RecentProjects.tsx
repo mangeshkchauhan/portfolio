@@ -12,7 +12,7 @@ const ProjectCard = ({ project }: { project: any }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="group relative overflow-hidden rounded-2xl bg-black border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
+      className="group relative overflow-hidden rounded-2xl bg-black border border-white/10 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/20 h-full flex flex-col"
     >
       {/* Project Image */}
       <div className="relative h-40 overflow-hidden">
@@ -27,12 +27,12 @@ const ProjectCard = ({ project }: { project: any }) => {
       </div>
 
       {/* Project Content */}
-      <div className="p-6">
-        <h3 className="text-lg font-semibold text-white mb-2 font-courier">
+      <div className="p-6 flex-1 flex flex-col">
+        <h3 className="text-lg font-semibold text-text-primary mb-2 font-serif line-clamp-2">
           {project.title}
         </h3>
         
-        <p className="text-white/80 text-sm mb-4 line-clamp-2 leading-relaxed font-courier">
+        <p className="text-text-secondary text-body-sm mb-4 line-clamp-3 leading-relaxed flex-1">
           {project.description}
         </p>
 
@@ -58,13 +58,13 @@ const ProjectCard = ({ project }: { project: any }) => {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 mt-auto">
           {project.links.live && (
             <a
               href={project.links.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white text-sm transition-all duration-200 hover:scale-105"
+              className="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-white text-sm transition-all duration-200 hover:scale-105 flex-1 justify-center"
             >
               <FaExternalLinkAlt className="text-xs" />
               <span>Live</span>
@@ -75,7 +75,7 @@ const ProjectCard = ({ project }: { project: any }) => {
               href={project.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white text-sm transition-all duration-200 hover:scale-105"
+              className="flex items-center gap-2 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg text-white text-sm transition-all duration-200 hover:scale-105 flex-1 justify-center"
             >
               <FaGithub className="text-xs" />
               <span>Code</span>
@@ -96,17 +96,17 @@ const RecentProjects = () => {
         animate={{ opacity: 1, y: 0 }}
         className="text-center mb-16"
       >
-        <h1 className="heading mb-4">
+        <h1 className="text-display-md font-serif font-bold text-center mb-4 text-text-primary">
           A small selection of{" "}
-          <span className="text-white">recent projects</span>
+          <span className="text-brand-primary">recent projects</span>
         </h1>
-        <p className="text-white-100 max-w-2xl mx-auto text-base">
+        <p className="text-text-secondary max-w-2xl mx-auto text-body-lg">
           Here are some of the projects I&apos;ve worked on recently, showcasing different technologies and problem-solving approaches.
         </p>
       </motion.div>
 
       {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
             key={project.id}

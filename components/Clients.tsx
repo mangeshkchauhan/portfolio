@@ -32,9 +32,9 @@ const Clients = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.6 }}
-        className="heading mb-6 md:mb-10"
+        className="text-display-md font-serif font-bold text-center mb-6 md:mb-10 text-text-primary"
       >
-        Kind words from <span className="text-white">peers and clients</span>
+        Kind words from <span className="text-brand-primary">peers and clients</span>
       </motion.h1>
 
       <div className="flex flex-col items-center">
@@ -45,9 +45,9 @@ const Clients = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="heading mt-6 md:mt-10 text-2xl md:text-3xl lg:text-4xl"
+          className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-center mt-6 md:mt-10 text-text-primary"
         >
-          Contributed <span className="text-white">for</span>
+          Contributed <span className="text-brand-primary">for</span>
         </motion.h2>
 
         <motion.div
@@ -55,38 +55,62 @@ const Clients = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mt-4 md:mt-6 px-4 pb-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6 lg:gap-8"
+          className="mt-8 md:mt-12 px-4 pb-4 max-w-4xl mx-auto"
         >
-          {companies.map(({ id, name, img, nameImg }) => (
-            <motion.div
-              key={id}
-              variants={itemVariants}
-              whileHover={{ y: -2, scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              tabIndex={0}
-              aria-label={name}
-              className="group relative flex items-center gap-2 sm:gap-3 rounded-xl border border-white/10 bg-black/60 backdrop-blur-xl px-3 py-2 sm:px-4 sm:py-3 focus:outline-none focus:ring-2 focus:ring-white/20"
-            >
-              <div className="relative">
-                <Image
-                  src={img}
-                  alt={name}
-                  width={40}
-                  height={40}
-                  className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-full object-cover"
-                />
-                <div className="absolute inset-0 rounded-full ring-0 ring-white/0 transition-all duration-300 group-hover:ring-4 group-hover:ring-white/10" />
-              </div>
-              <Image
-                src={nameImg}
-                alt={name}
-                width={120}
-                height={28}
-                className="w-20 sm:w-24 md:w-28 h-5 sm:h-6 md:h-7 object-contain opacity-90 group-hover:opacity-100 transition-opacity"
-              />
-              <div className="absolute -z-10 inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
+            {companies.map(({ id, name, img, nameImg }) => (
+              <motion.div
+                key={id}
+                variants={itemVariants}
+                whileHover={{ 
+                  y: -4, 
+                  scale: 1.03,
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                whileTap={{ scale: 0.97 }}
+                tabIndex={0}
+                aria-label={name}
+                className="group relative flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm hover:border-brand-primary/30 hover:shadow-2xl hover:shadow-brand-primary/10 focus:outline-none focus:ring-2 focus:ring-brand-primary/50 transition-all duration-500 ease-out cursor-pointer overflow-hidden"
+              >
+                {/* Background glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 via-transparent to-brand-primary/5 rounded-2xl" />
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-brand-primary/30 to-transparent" />
+                </div>
+                
+                {/* Company logo */}
+                <div className="relative mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <div className="relative w-16 h-16 md:w-20 md:h-20">
+                    <Image
+                      src={img}
+                      alt={name}
+                      fill
+                      className="rounded-2xl object-cover shadow-lg"
+                    />
+                    <div className="absolute inset-0 rounded-2xl ring-0 ring-brand-primary/0 transition-all duration-300 group-hover:ring-2 group-hover:ring-brand-primary/40 group-hover:ring-offset-2 group-hover:ring-offset-black/20" />
+                  </div>
+                  
+                  {/* Logo shine effect */}
+                  <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-sm" />
+                </div>
+                
+                {/* Company name */}
+                <div className="relative z-10 text-center">
+                  <Image
+                    src={nameImg}
+                    alt={name}
+                    width={120}
+                    height={32}
+                    className="w-20 md:w-24 h-5 md:h-6 object-contain opacity-80 group-hover:opacity-100 transition-all duration-300 mx-auto"
+                  />
+                </div>
+                
+                {/* Subtle particle effect */}
+                <div className="absolute top-4 right-4 w-1 h-1 rounded-full bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100" />
+                <div className="absolute bottom-4 left-4 w-1 h-1 rounded-full bg-brand-primary/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200" />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
