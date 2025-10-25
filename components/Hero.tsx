@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
@@ -7,65 +7,69 @@ import MagicButton from "./ui/MagicButton";
 import { FaLocationArrow, FaDownload } from "react-icons/fa";
 
 const Hero = () => {
-  const containerVariants = {
+
+  // Enhanced animation variants
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.2
+        staggerChildren: 0.12,
+        ease: "easeOut"
       }
     }
-  };
+  }), []);
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0, y: 20, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
         duration: 0.6,
         ease: "easeOut"
       }
     }
-  };
+  }), []);
 
-  const floatingVariants = {
-    initial: { y: 0 },
-    animate: {
-      y: [-10, 10, -10],
-      transition: {
-        duration: 3,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
+
 
   return (
-    <div className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Subtle Spotlight Effects (desaturated) */}
+    <header 
+      className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden"
+      aria-label="Hero section"
+    >
+      {/* Enhanced Spotlight Effects */}
       <div className="absolute inset-0 z-0">
-        <Spotlight
-          className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-          fill="#ffffff"
-        />
-        <Spotlight
-          className="top-10 left-full md:left-full h-[80vh] w-[70vw] md:w-[50vw]"
-          fill="#ffffff"
-        />
-        <Spotlight 
-          className="top-28 left-40 md:left-80 h-[80vh] w-[60vw] md:w-[50vw]" 
-          fill="#ffffff" 
-        />
+        <div className="hidden md:block">
+          <Spotlight
+            className="-top-40 -left-32 h-screen"
+            fill="#4C9EFF"
+          />
+          <Spotlight
+            className="top-10 left-full h-[80vh] w-[50vw]"
+            fill="#7C3AED"
+          />
+          <Spotlight
+            className="top-1/2 right-10 h-[60vh] w-[40vw]"
+            fill="#06B6D4"
+          />
+        </div>
         
-        {/* Minimal ambient lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[240px] h-[240px] sm:w-[320px] sm:h-[320px] lg:w-[520px] lg:h-[520px] bg-white/5 rounded-full blur-3xl opacity-10" />
+        {/* Dynamic mobile lighting */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 rounded-full blur-3xl opacity-30" />
       </div>
 
-      {/* Subtle Grid Background */}
+      {/* Enhanced Grid Background with Gradient Overlay */}
       <div className="absolute inset-0 w-full bg-black bg-grid-white/[0.02] z-0">
-        <div className="absolute pointer-events-none inset-0 bg-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+        <div className="absolute pointer-events-none inset-0 bg-gradient-to-b from-black via-black/95 to-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+      </div>
+
+      {/* Minimal ambient lighting */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 rounded-full blur-3xl opacity-50" />
       </div>
 
       {/* Main Content */}
@@ -73,149 +77,110 @@ const Hero = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-[95vw] sm:max-w-[90vw] md:max-w-2xl lg:max-w-[60vw] mx-auto px-3 sm:px-4 md:px-6"
+        className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-8 pt-20 sm:pt-24"
       >
-        <div className="flex flex-col items-center justify-center text-center">
+        <div className="flex flex-col items-center justify-center text-center space-y-6">
           
-          {/* Animated Name Badge */}
-          <motion.div
-            variants={itemVariants}
-            className="mb-6 sm:mb-8"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center px-3 py-2 sm:px-6 sm:py-3 rounded-full glass border-white/10"
-            >
-              <span className="text-caption font-medium text-text-muted">
-                <span className="hidden sm:inline">👋 Hi, I&apos;m </span>
-                <span className="sm:hidden">👋 </span>
-                Mangesh Kumar Chauhan
+          {/* Simple Greeting */}
+          <motion.div variants={itemVariants}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/20">
+              <span className="text-sm sm:text-base text-white/90">
+                👋 Hi, I&apos;m Mangesh Kumar Chauhan
               </span>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Enhanced Main Title */}
-          <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+
+
+          {/* Main Title */}
+          <motion.div variants={itemVariants}>
             <TextGenerateEffect
-              className="text-center text-display-md lg:text-display-lg font-serif font-semibold text-text-primary"
-              words="Crafting Concepts into Effortless User Experiences"
+              className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
+              words="Full-Stack Developer & React Specialist"
             />
           </motion.div>
 
-          {/* Enhanced Description */}
-          <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-            <p className="text-center text-body-lg md:text-xl text-text-secondary max-w-sm sm:max-w-lg md:max-w-2xl leading-relaxed px-2 sm:px-0">
-              Full-stack developer specializing in{" "}
-              <span className="text-brand-primary font-semibold">React</span> and{" "}
-              <span className="text-brand-primary font-semibold">React Native</span>.
-              I build scalable applications with modern technologies and clean, efficient code.
+          {/* Simple Description */}
+          <motion.div variants={itemVariants}>
+            <p className="text-center text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
+              Building scalable applications with modern technologies and clean, efficient code
             </p>
           </motion.div>
 
-          {/* Skills Preview */}
-          <motion.div 
-            variants={itemVariants}
-            className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-6 sm:mb-8 opacity-80 px-2"
-          >
-            {[
-              "React", "Next.js", "TypeScript", "Node.js", "React Native", "AI/ML"
-            ].map((skill, index) => (
-              <motion.span
-                key={skill}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5 + index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                className="px-2 sm:px-3 py-1 text-xs sm:text-sm glass border-white/10 rounded-full text-text-secondary font-mono"
-              >
-                {skill}
-              </motion.span>
-            ))}
+          {/* Skills */}
+          <motion.div variants={itemVariants}>
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+              {["React", "Next.js", "TypeScript", "Node.js", "React Native", "Python"].map((skill) => (
+                <span
+                  key={skill}
+                  className="px-3 py-2 text-sm bg-white/5 border border-white/20 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
           </motion.div>
 
           {/* Action Buttons */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full px-2 sm:px-0 items-center justify-center"
+            className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto"
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
-              <a href="#projects" className="block w-full sm:w-auto">
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:flex-1">
+              <a href="#projects">
                 <MagicButton
-                  title="Explore My Work"
+                  title="View Projects"
                   icon={<FaLocationArrow />}
                   position="right"
                 />
               </a>
             </motion.div>
-
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="w-full sm:w-auto">
-              <a
-                href="/resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 bg-transparent border-2 border-white/20 text-white hover:bg-white/5 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base w-full sm:w-auto"
-              >
-                <FaDownload className="text-sm" />
-                <span className="hidden sm:inline">Download Resume</span>
-                <span className="sm:hidden">Resume</span>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:flex-1">
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                <MagicButton
+                  title="Resume"
+                  icon={<FaDownload />}
+                  position="right"
+                  variant="secondary"
+                />
               </a>
             </motion.div>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Scroll Indicator - Fixed positioning at bottom */}
-      <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 flex justify-center">
+      {/* Simple Scroll Indicator */}
+      <div className="absolute bottom-8 left-0 right-0 z-30 flex justify-center">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ 
-            opacity: 1, 
-            y: 0,
-            transition: { delay: 2, duration: 0.8 }
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
         >
-          <motion.div
-            animate={{ opacity: [0.5, 1, 0.5] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center text-gray-400 cursor-pointer"
-            onClick={() => {
+          <motion.button
+            animate={{ opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="text-white/60 hover:text-white transition-colors p-4"
+            onClick={useCallback(() => {
               const nextSection = document.querySelector('#about') || document.querySelector('[id]:not([id=""])');
               if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth' });
               }
-            }}
+            }, [])}
+            aria-label="Scroll to next section"
           >
-            <span className="text-xs mb-2 uppercase tracking-wide">Scroll Down</span>
-            <motion.div 
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-gray-400/60 rounded-full flex items-center justify-center relative overflow-hidden"
-            >
+            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-center justify-center">
               <motion.div 
-                animate={{ y: [-8, 16, -8] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="w-1 h-2 sm:h-3 bg-gray-400 rounded-full"
+                animate={{ y: [-4, 8, -4] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-1 h-3 bg-white/60 rounded-full"
               />
-            </motion.div>
-          </motion.div>
+            </div>
+          </motion.button>
         </motion.div>
       </div>
 
-      {/* Floating Elements */}
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute top-1/4 left-10 w-20 h-20 bg-white/5 rounded-full blur-xl opacity-10 hidden lg:block z-0"
-      />
-      <motion.div
-        variants={floatingVariants}
-        initial="initial"
-        animate="animate"
-        className="absolute bottom-1/4 right-10 w-16 h-16 bg-white/5 rounded-full blur-xl opacity-10 hidden lg:block z-0"
-        style={{ animationDelay: "1s" }}
-      />
-    </div>
+
+    </header>
   );
 };
 
