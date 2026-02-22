@@ -1,186 +1,177 @@
-"use client";
-import React, { useCallback, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Spotlight } from "./ui/Spotlight";
-import { TextGenerateEffect } from "./ui/TextGenerateEffect";
-import MagicButton from "./ui/MagicButton";
-import { FaLocationArrow, FaDownload } from "react-icons/fa";
+'use client';
+
+import React, { useCallback } from 'react';
+import { motion } from 'framer-motion';
+import { Spotlight } from './ui/Spotlight';
+import { TextGenerateEffect } from './ui/TextGenerateEffect';
+import { FaArrowRight } from 'react-icons/fa';
+
+const container = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 const Hero = () => {
-
-  // Enhanced animation variants
-  const containerVariants = useMemo(() => ({
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.12,
-        ease: "easeOut"
-      }
-    }
-  }), []);
-
-  const itemVariants = useMemo(() => ({
-    hidden: { opacity: 0, y: 20, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }), []);
-
-
+  const scrollToNext = useCallback(() => {
+    const el = document.querySelector('#about');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
   return (
-    <header 
-      className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden"
-      aria-label="Hero section"
-    >
-      {/* Enhanced Spotlight Effects */}
-      <div className="absolute inset-0 z-0">
-        <div className="hidden md:block">
-          <Spotlight
-            className="-top-40 -left-32 h-screen"
-            fill="#4C9EFF"
-          />
-          <Spotlight
-            className="top-10 left-full h-[80vh] w-[50vw]"
-            fill="#7C3AED"
-          />
-          <Spotlight
-            className="top-1/2 right-10 h-[60vh] w-[40vw]"
-            fill="#06B6D4"
-          />
-        </div>
-        
-        {/* Dynamic mobile lighting */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] lg:w-[600px] lg:h-[600px] bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-cyan-500/10 rounded-full blur-3xl opacity-30" />
-      </div>
-
-      {/* Enhanced Grid Background with Gradient Overlay */}
-      <div className="absolute inset-0 w-full bg-black bg-grid-white/[0.02] z-0">
-        <div className="absolute pointer-events-none inset-0 bg-gradient-to-b from-black via-black/95 to-black [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
-      </div>
-
-      {/* Minimal ambient lighting */}
+    <section className="relative min-h-[100dvh] w-full flex items-center justify-center overflow-hidden bg-black">
+      {/* Spotlight ambient lighting */}
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 rounded-full blur-3xl opacity-50" />
+        <Spotlight
+          className="-top-40 -left-10 md:-left-32 h-screen"
+          fill="#4C9EFF"
+        />
+        <Spotlight
+          className="top-10 left-full h-[80vh] w-[50vw]"
+          fill="#7C3AED"
+        />
       </div>
 
-      {/* Main Content */}
+      {/* Dot grid pattern */}
+      <div
+        className="absolute inset-0 z-0 bg-dot-white/[0.15] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)]"
+        aria-hidden="true"
+      />
+
+      {/* Radial gradient overlay */}
+      <div
+        className="absolute inset-0 z-0 bg-black [mask-image:radial-gradient(ellipse_600px_400px_at_50%_50%,transparent_30%,black)]"
+        aria-hidden="true"
+      />
+
+      {/* Content */}
       <motion.div
-        variants={containerVariants}
+        variants={container}
         initial="hidden"
         animate="visible"
-        className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-8 pt-20 sm:pt-24"
+        className="relative z-10 w-full max-w-3xl mx-auto px-6 sm:px-8"
       >
-        <div className="flex flex-col items-center justify-center text-center space-y-6">
-          
-          {/* Simple Greeting */}
-          <motion.div variants={itemVariants}>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/20">
-              <span className="text-sm sm:text-base text-white/90">
-                👋 Hi, I&apos;m Mangesh Kumar Chauhan
+        <div className="flex flex-col items-center text-center">
+          {/* Status badge */}
+          <motion.div variants={item}>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.05] border border-white/10 mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-            </div>
+              <span className="text-xs font-medium tracking-wide text-white/70 uppercase">
+                Available for opportunities
+              </span>
+            </span>
           </motion.div>
 
-
-
-          {/* Main Title */}
-          <motion.div variants={itemVariants}>
+          {/* Display heading */}
+          <motion.div variants={item}>
             <TextGenerateEffect
-              className="text-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight"
-              words="Full-Stack Developer & React Specialist"
+              className="font-season text-[2.5rem] sm:text-[3.5rem] md:text-[4.25rem] leading-[1.1] tracking-tight text-white"
+              words="Building Polished Web & Mobile Experiences"
             />
           </motion.div>
 
-          {/* Simple Description */}
-          <motion.div variants={itemVariants}>
-            <p className="text-center text-lg sm:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto">
-              Building scalable applications with modern technologies and clean, efficient code
-            </p>
-          </motion.div>
-
-          {/* Skills */}
-          <motion.div variants={itemVariants}>
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-              {["React", "Next.js", "TypeScript", "Node.js", "React Native", "Python"].map((skill) => (
-                <span
-                  key={skill}
-                  className="px-3 py-2 text-sm bg-white/5 border border-white/20 rounded-full text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Action Buttons */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto"
+          {/* Name and description */}
+          <motion.p
+            variants={item}
+            className="mt-6 text-base sm:text-lg text-white/60 max-w-lg mx-auto font-sans leading-relaxed"
           >
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:flex-1">
-              <a href="#projects">
-                <MagicButton
-                  title="View Projects"
-                  icon={<FaLocationArrow />}
-                  position="right"
-                />
-              </a>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:flex-1">
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-                <MagicButton
-                  title="Resume"
-                  icon={<FaDownload />}
-                  position="right"
-                  variant="secondary"
-                />
-              </a>
-            </motion.div>
+            Hi, I&apos;m{' '}
+            <span className="text-white font-medium">
+              Mangesh Kumar Chauhan
+            </span>{' '}
+            &mdash; a frontend developer specializing in React, TypeScript, and
+            crafting seamless user experiences.
+          </motion.p>
+
+          {/* Tech pills */}
+          <motion.div
+            variants={item}
+            className="mt-8 flex flex-wrap justify-center gap-2"
+          >
+            {[
+              'React',
+              'Next.js',
+              'TypeScript',
+              'React Native',
+              'Node.js',
+              'Tailwind CSS',
+            ].map((tech) => (
+              <span
+                key={tech}
+                className="px-3 py-1 text-xs font-mono text-white/50 bg-white/[0.04] border border-white/[0.08] rounded-md hover:text-white/80 hover:border-white/20 hover:bg-white/[0.06] transition-all duration-300 cursor-default"
+              >
+                {tech}
+              </span>
+            ))}
+          </motion.div>
+
+          {/* CTA buttons */}
+          <motion.div
+            variants={item}
+            className="mt-10 flex flex-col sm:flex-row gap-3"
+          >
+            <a
+              href="#projects"
+              className="group inline-flex items-center justify-center gap-2.5 px-7 py-3 text-sm font-medium text-white bg-gradient-to-b from-white/15 to-white/5 border border-white/20 rounded-lg hover:from-white/20 hover:to-white/10 hover:border-white/30 transition-all duration-300"
+            >
+              View My Work
+              <FaArrowRight className="w-3 h-3 transition-transform duration-300 group-hover:translate-x-0.5" />
+            </a>
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-7 py-3 text-sm font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/25 rounded-lg transition-all duration-300"
+            >
+              Download Resume
+            </a>
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Simple Scroll Indicator */}
-      <div className="absolute bottom-8 left-0 right-0 z-30 flex justify-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 0.6 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <button
+          onClick={scrollToNext}
+          aria-label="Scroll to next section"
+          className="flex flex-col items-center gap-2 text-white/40 hover:text-white/70 transition-colors"
         >
-          <motion.button
-            animate={{ opacity: [0.6, 1, 0.6] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-white/60 hover:text-white transition-colors p-4"
-            onClick={useCallback(() => {
-              const nextSection = document.querySelector('#about') || document.querySelector('[id]:not([id=""])');
-              if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth' });
-              }
-            }, [])}
-            aria-label="Scroll to next section"
-          >
-            <div className="w-6 h-10 border-2 border-white/40 rounded-full flex items-center justify-center">
-              <motion.div 
-                animate={{ y: [-4, 8, -4] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-1 h-3 bg-white/60 rounded-full"
-              />
-            </div>
-          </motion.button>
-        </motion.div>
-      </div>
-
-
-    </header>
+          <span className="text-[10px] tracking-[0.2em] uppercase font-medium">
+            Scroll
+          </span>
+          <div className="w-5 h-8 border border-white/25 rounded-full flex items-start justify-center pt-1.5">
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: 'easeInOut',
+              }}
+              className="w-1 h-1 rounded-full bg-white/60"
+            />
+          </div>
+        </button>
+      </motion.div>
+    </section>
   );
 };
 

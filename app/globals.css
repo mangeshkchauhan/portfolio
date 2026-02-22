@@ -33,7 +33,7 @@
     --ring: 220 70% 60%;
 
     --radius: 0.5rem;
-    
+
     /* Custom semantic colors */
     --brand-primary: 220 100% 70%;
     --brand-secondary: 260 80% 65%;
@@ -73,7 +73,7 @@
     --border: 0 0% 16%;
     --input: 0 0% 10%;
     --ring: 220 70% 60%;
-    
+
     /* Enhanced dark theme colors */
     --brand-primary: 220 100% 70%;
     --brand-secondary: 260 80% 65%;
@@ -94,10 +94,11 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  
+
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-matter), ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: 'rlig' 1, 'calt' 1;
     /* Mobile performance optimizations */
     -webkit-tap-highlight-color: transparent;
@@ -105,26 +106,31 @@
     overscroll-behavior: none;
   }
 
-  /* Typography families */
   .font-sans {
-    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  .font-mono {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
-    font-feature-settings: 'liga' 1, 'calt' 1;
-  }
-  
-  .font-serif {
-    font-family: var(--font-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-family: var(--font-matter), ui-sans-serif, system-ui, -apple-system,
+      BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
-  /* Legacy support for existing components */
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono',
+      Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+      monospace;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+
+  .font-serif {
+    font-family: var(--font-season), ui-serif, Georgia, Cambria,
+      'Times New Roman', Times, serif;
+  }
+
   .font-courier {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono',
+      Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
+      monospace;
   }
   .font-special {
-    font-family: var(--font-serif), ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+    font-family: var(--font-season), ui-serif, Georgia, Cambria,
+      'Times New Roman', Times, serif;
   }
   button {
     @apply active:outline-none;
@@ -136,57 +142,68 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
 
-  /* Typography Scale */
   .text-display-xl {
-    font-size: clamp(3rem, 8vw, 6rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2rem, 6vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-family: var(--font-season), ui-serif, Georgia, serif;
   }
 
   .text-display-lg {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 6vw, 5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-family: var(--font-season), ui-serif, Georgia, serif;
   }
 
   .text-display-md {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    line-height: 1.2;
-    letter-spacing: -0.01em;
+    font-size: clamp(2rem, 5vw, 3.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-family: var(--font-season), ui-serif, Georgia, serif;
   }
 
   .text-body-lg {
     font-size: 1.125rem;
-    line-height: 1.7;
-    letter-spacing: 0.01em;
+    line-height: 1.75;
+    letter-spacing: 0.005em;
   }
 
   .text-body-md {
     font-size: 1rem;
-    line-height: 1.6;
-    letter-spacing: 0.01em;
+    line-height: 1.65;
+    letter-spacing: 0;
   }
 
   .text-body-sm {
     font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
   }
 
   .text-caption {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
     line-height: 1.4;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    font-weight: 500;
   }
 
   /* Enhanced gradients */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--brand-primary)) 0%, hsl(var(--brand-secondary)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--brand-primary)) 0%,
+      hsl(var(--brand-secondary)) 100%
+    );
   }
 
   .gradient-surface {
-    background: linear-gradient(135deg, hsl(var(--surface-primary)) 0%, hsl(var(--surface-secondary)) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(var(--surface-primary)) 0%,
+      hsl(var(--surface-secondary)) 100%
+    );
   }
 
   .black-gradient {
@@ -245,8 +262,13 @@
 
   /* Custom animations */
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   .animate-float {

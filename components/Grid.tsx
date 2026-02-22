@@ -1,10 +1,10 @@
-import React from "react";
-import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
-import { gridItems } from "@/data";
+import React from 'react';
+import { BentoGrid, BentoGridItem } from './ui/BentoGrid';
+import { gridItems } from '@/data';
 
 const Grid = () => {
   return (
-    <section id="about" className="py-20">
+    <section id="about" className="py-24 md:py-32">
       <BentoGrid>
         {gridItems.map(
           ({

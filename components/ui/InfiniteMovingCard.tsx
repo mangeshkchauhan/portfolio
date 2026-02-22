@@ -101,7 +101,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="group w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative flex-shrink-0 rounded-2xl glass border-white/10 p-5 sm:p-6 md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-brand-primary/30 hover:bg-black/70 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06),0_10px_25px_rgba(0,0,0,0.45)]"
+            className="group w-[80vw] sm:w-[60vw] md:w-[45vw] lg:w-[35vw] xl:w-[25vw] max-w-full relative flex-shrink-0 rounded-2xl glass border-white/[0.08] p-5 sm:p-6 md:p-8 lg:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-white/15 hover:bg-black/80 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04),0_10px_25px_rgba(0,0,0,0.5)]"
             key={idx}
           >
             {/* Decorative glows */}
@@ -131,7 +131,7 @@ export const InfiniteMovingCards = ({
                 <div className="mt-4 flex items-center gap-3">
                   <div className="w-2 h-2 rounded-full bg-brand-primary/60" />
                   <div className="flex flex-col">
-                    <span className="text-base sm:text-lg font-semibold leading-tight text-text-primary font-serif">
+                    <span className="text-base sm:text-lg font-semibold leading-tight text-text-primary font-season">
                       {item.name}
                     </span>
                     <span className="text-body-sm leading-snug text-text-secondary font-normal font-sans">

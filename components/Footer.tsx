@@ -58,7 +58,7 @@ const Footer = () => {
       <div className="w-full absolute left-0 top-0 min-h-full opacity-10">
         <Image
           src="/footer-grid.svg"
-          alt="grid"
+          alt=""
           fill
           className="object-cover"
         />
@@ -81,7 +81,7 @@ const Footer = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-display-md font-serif font-bold lg:max-w-[45vw] mb-6 text-text-primary"
+            className="text-display-md font-season font-normal lg:max-w-[45vw] mb-6 text-text-primary"
           >
             Ready to take <span className="text-brand-primary">your</span>{' '}
             digital presence to the next level?
@@ -112,7 +112,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             {/* About Section */}
             <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="text-xl font-bold text-white mb-4 font-special">
+              <h3 className="text-xl font-semibold text-white mb-4 font-season">
                 About Me
               </h3>
               <p className="text-gray-300 leading-relaxed mb-6">
@@ -137,7 +137,7 @@ const Footer = () => {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-text-primary font-medium mb-3 font-serif">
+                <h4 className="text-text-primary font-medium mb-3 font-season">
                   Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-2">
@@ -155,7 +155,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-text-primary mb-4 font-serif">
+              <h3 className="text-xl font-semibold text-text-primary mb-4 font-season">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -188,7 +188,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-bold text-text-primary mb-4 font-serif">
+              <h3 className="text-xl font-semibold text-text-primary mb-4 font-season">
                 Get In Touch
               </h3>
               <div className="space-y-4">

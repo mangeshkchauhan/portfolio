@@ -85,7 +85,7 @@ export const FloatingNav = ({
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
               className={cn(
-                "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/10 rounded-full shadow-lg backdrop-blur-lg bg-black/70 z-[5000] px-6 py-3 items-center justify-center space-x-4",
+                "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-white/[0.08] rounded-full shadow-lg backdrop-blur-xl bg-black/80 z-[5000] px-6 py-3 items-center justify-center space-x-4 font-sans",
               className
             )}
           >
