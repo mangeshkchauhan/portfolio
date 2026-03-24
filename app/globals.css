@@ -4,45 +4,44 @@
 
 @layer base {
   :root {
-    --background: 0 0% 2%;
-    --foreground: 0 0% 98%;
+    --background: 0 0% 98%;
+    --foreground: 240 10% 6%;
 
-    --card: 0 0% 3%;
-    --card-foreground: 0 0% 95%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
 
-    --popover: 0 0% 4%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
 
-    --primary: 220 100% 70%;
-    --primary-foreground: 0 0% 0%;
+    --primary: 220 90% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 8%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 240 5% 94%;
+    --secondary-foreground: 240 6% 18%;
 
-    --muted: 0 0% 7%;
-    --muted-foreground: 0 0% 65%;
+    --muted: 240 5% 94%;
+    --muted-foreground: 240 4% 45%;
 
-    --accent: 220 70% 60%;
+    --accent: 220 75% 48%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 12%;
-    --ring: 220 70% 60%;
+    --border: 240 6% 88%;
+    --input: 240 6% 90%;
+    --ring: 220 90% 48%;
 
     --radius: 0.5rem;
 
-    /* Custom semantic colors */
-    --brand-primary: 220 100% 70%;
-    --brand-secondary: 260 80% 65%;
-    --text-primary: 0 0% 98%;
-    --text-secondary: 0 0% 75%;
-    --text-muted: 0 0% 55%;
-    --surface-primary: 0 0% 3%;
-    --surface-secondary: 0 0% 6%;
-    --surface-tertiary: 0 0% 9%;
+    --brand-primary: 220 90% 48%;
+    --brand-secondary: 260 65% 48%;
+    --text-primary: 240 10% 6%;
+    --text-secondary: 240 5% 38%;
+    --text-muted: 240 4% 48%;
+    --surface-primary: 0 0% 100%;
+    --surface-secondary: 240 5% 96%;
+    --surface-tertiary: 240 5% 92%;
   }
 
   .dark {
@@ -74,7 +73,6 @@
     --input: 0 0% 10%;
     --ring: 220 70% 60%;
 
-    /* Enhanced dark theme colors */
     --brand-primary: 220 100% 70%;
     --brand-secondary: 260 80% 65%;
     --text-primary: 0 0% 98%;
@@ -97,7 +95,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-matter), ui-sans-serif, system-ui, -apple-system,
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: 'rlig' 1, 'calt' 1;
     /* Mobile performance optimizations */
@@ -107,8 +105,12 @@
   }
 
   .font-sans {
-    font-family: var(--font-matter), ui-sans-serif, system-ui, -apple-system,
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .font-display {
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
 
   .font-mono {
@@ -119,18 +121,11 @@
   }
 
   .font-serif {
-    font-family: var(--font-season), ui-serif, Georgia, Cambria,
-      'Times New Roman', Times, serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
 
-  .font-courier {
-    font-family: var(--font-mono), ui-monospace, SFMono-Regular, 'SF Mono',
-      Menlo, Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New',
-      monospace;
-  }
   .font-special {
-    font-family: var(--font-season), ui-serif, Georgia, Cambria,
-      'Times New Roman', Times, serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
   button {
     @apply active:outline-none;
@@ -146,21 +141,21 @@
     font-size: clamp(2rem, 6vw, 5rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
-    font-family: var(--font-season), ui-serif, Georgia, serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
 
   .text-display-lg {
     font-size: clamp(2rem, 6vw, 5rem);
     line-height: 1.1;
     letter-spacing: -0.025em;
-    font-family: var(--font-season), ui-serif, Georgia, serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
 
   .text-display-md {
     font-size: clamp(2rem, 5vw, 3.75rem);
     line-height: 1.15;
     letter-spacing: -0.02em;
-    font-family: var(--font-season), ui-serif, Georgia, serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   }
 
   .text-body-lg {
@@ -207,21 +202,35 @@
   }
 
   .black-gradient {
+    background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 50%, #f4f4f5 100%);
+  }
+
+  .dark .black-gradient {
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
   }
 
   /* Glass morphism */
   .glass {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.72);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .dark .glass {
+    background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .glass-dark {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.55);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .dark .glass-dark {
+    background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -299,9 +308,13 @@
   /* Mobile-optimized glass effect */
   @media (max-width: 768px) {
     .glass {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
+    }
+
+    .dark .glass {
+      background: rgba(255, 255, 255, 0.08);
     }
   }
 }

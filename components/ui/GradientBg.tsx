@@ -1,11 +1,12 @@
 "use client";
 import { cn } from "@/utils/cn";
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(0, 0, 0)",
   gradientBackgroundEnd = "rgb(0, 0, 0)",
-  firstColor = "64, 64, 64", // subtle grey glows
+  firstColor = "64, 64, 64",
   secondColor = "64, 64, 64",
   thirdColor = "64, 64, 64",
   fourthColor = "64, 64, 64",
@@ -33,45 +34,94 @@ export const BackgroundGradientAnimation = ({
   interactive?: boolean;
   containerClassName?: string;
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const interactiveRef = useRef<HTMLDivElement>(null);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
+
   useEffect(() => {
-    document.body.style.setProperty(
-      "--gradient-background-start",
-      gradientBackgroundStart
-    );
-    document.body.style.setProperty(
-      "--gradient-background-end",
-      gradientBackgroundEnd
-    );
-    document.body.style.setProperty("--first-color", firstColor);
-    document.body.style.setProperty("--second-color", secondColor);
-    document.body.style.setProperty("--third-color", thirdColor);
-    document.body.style.setProperty("--fourth-color", fourthColor);
-    document.body.style.setProperty("--fifth-color", fifthColor);
-    document.body.style.setProperty("--pointer-color", pointerColor);
-    document.body.style.setProperty("--size", size);
-    document.body.style.setProperty("--blending-value", blendingValue);
+    setMounted(true);
   }, []);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const light = mounted && resolvedTheme === "light";
+    const defaultBlack = "rgb(0, 0, 0)";
+    const defaultGray = "64, 64, 64";
+    const defaultPointer = "128, 128, 128";
+
+    const gStart =
+      light && gradientBackgroundStart === defaultBlack
+        ? "rgb(244, 244, 245)"
+        : gradientBackgroundStart;
+    const gEnd =
+      light && gradientBackgroundEnd === defaultBlack
+        ? "rgb(228, 228, 231)"
+        : gradientBackgroundEnd;
+
+    const pickRgb = (v: string, lightFallback: string) =>
+      light && v === defaultGray ? lightFallback : v;
+
+    const f1 = pickRgb(firstColor, "198, 200, 210");
+    const f2 = pickRgb(secondColor, "198, 200, 210");
+    const f3 = pickRgb(thirdColor, "198, 200, 210");
+    const f4 = pickRgb(fourthColor, "198, 200, 210");
+    const f5 = pickRgb(fifthColor, "198, 200, 210");
+    const ptr =
+      light && pointerColor === defaultPointer
+        ? "130, 150, 220"
+        : pointerColor;
+
+    el.style.setProperty("--gradient-background-start", gStart);
+    el.style.setProperty("--gradient-background-end", gEnd);
+    el.style.setProperty("--first-color", f1);
+    el.style.setProperty("--second-color", f2);
+    el.style.setProperty("--third-color", f3);
+    el.style.setProperty("--fourth-color", f4);
+    el.style.setProperty("--fifth-color", f5);
+    el.style.setProperty("--pointer-color", ptr);
+    el.style.setProperty("--size", size);
+    el.style.setProperty("--blending-value", blendingValue);
+  }, [
+    mounted,
+    resolvedTheme,
+    gradientBackgroundStart,
+    gradientBackgroundEnd,
+    firstColor,
+    secondColor,
+    thirdColor,
+    fourthColor,
+    fifthColor,
+    pointerColor,
+    size,
+    blendingValue,
+  ]);
 
   useEffect(() => {
     function move() {
       if (!interactiveRef.current) {
         return;
       }
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
-      interactiveRef.current.style.transform = `translate(${Math.round(
-        curX
-      )}px, ${Math.round(curY)}px)`;
+      setCurX((cx) => cx + (tgX - cx) / 20);
+      setCurY((cy) => cy + (tgY - cy) / 20);
     }
 
     move();
   }, [tgX, tgY]);
+
+  useEffect(() => {
+    if (!interactiveRef.current) return;
+    interactiveRef.current.style.transform = `translate(${Math.round(
+      curX
+    )}px, ${Math.round(curY)}px)`;
+  }, [curX, curY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
@@ -88,8 +138,9 @@ export const BackgroundGradientAnimation = ({
 
   return (
     <div
+      ref={containerRef}
       className={cn(
-        "h-full w-full absolute overflow-hidden top-0 left-0 bg-black",
+        "h-full w-full absolute overflow-hidden top-0 left-0 bg-zinc-100 dark:bg-black",
         containerClassName
       )}
     >

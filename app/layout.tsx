@@ -1,15 +1,7 @@
 import type { Metadata, Viewport } from 'next';
-import { JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from './provider';
-import { matterFont, seasonFont } from './fonts';
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-  display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
-});
+import { bodyFont, displayFont, monoFont } from './fonts';
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -64,7 +56,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: [{ media: '(prefers-color-scheme: dark)', color: '#000000' }],
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fafafa' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
+  ],
 };
 
 const personJsonLd = {
@@ -92,7 +87,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${matterFont.variable} ${seasonFont.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+      className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}
     >
       <body>
         <script

@@ -37,12 +37,12 @@ const TimezoneClock: React.FC<TimezoneClockProps> = ({ city, timezone, position,
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay, duration: 0.5 }}
     >
-      <div className="bg-black/70 backdrop-blur-sm border border-white/10 rounded-md p-1.5 text-center min-w-[60px] shadow-lg">
-        <div className="text-white text-[10px] font-semibold mb-0.5">{city}</div>
-        <div className="text-white/70 text-xs font-mono">{time}</div>
+      <div className="bg-background/95 backdrop-blur-sm border border-border text-foreground rounded-md p-1.5 text-center min-w-[60px] shadow-lg dark:bg-black/70 dark:border-white/10">
+        <div className="text-[10px] font-semibold mb-0.5">{city}</div>
+        <div className="text-muted-foreground text-xs font-mono">{time}</div>
       </div>
       <motion.div
-        className="absolute -inset-0.5 bg-white/5 rounded-md -z-10"
+        className="absolute -inset-0.5 bg-black/[0.04] dark:bg-white/5 rounded-md -z-10"
         animate={{ 
           scale: [1, 1.05, 1],
           opacity: [0.1, 0.2, 0.1]
@@ -76,7 +76,7 @@ const WorldMap: React.FC = () => {
            {Array.from({ length: 48 }).map((_, i) => (
             <motion.div
               key={i}
-               className="border border-white/5"
+               className="border border-black/[0.06] dark:border-white/5"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 0.5, 0] }}
               transition={{
@@ -189,7 +189,7 @@ const WorldMap: React.FC = () => {
         {Array.from({ length: 8 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-white/20 rounded-full"
+            className="absolute w-0.5 h-0.5 bg-foreground/25 rounded-full dark:bg-white/20"
             style={{
               top: `${20 + Math.random() * 60}%`,
               left: `${10 + Math.random() * 80}%`,
@@ -216,9 +216,9 @@ const WorldMap: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 3, duration: 1 }}
       >
-        <div className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-md px-2 py-1">
-          <div className="text-white/80 text-xs font-semibold font-courier">Available 24/7</div>
-          <div className="text-white/60 text-[10px]">Across all timezones</div>
+        <div className="bg-background/90 backdrop-blur-sm border border-border rounded-md px-2 py-1 dark:bg-black/30 dark:border-white/10">
+          <div className="text-foreground/90 text-xs font-semibold font-mono dark:text-white/80">Available 24/7</div>
+          <div className="text-muted-foreground text-[10px] dark:text-white/60">Across all timezones</div>
         </div>
       </motion.div>
     </div>

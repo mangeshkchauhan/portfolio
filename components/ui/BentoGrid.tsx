@@ -38,6 +38,7 @@ export const BentoGridItem = ({
   imgClassName,
   titleClassName,
   spareImg,
+  contentOnDark,
 }: {
   className?: string;
   id: number;
@@ -47,6 +48,7 @@ export const BentoGridItem = ({
   imgClassName?: string;
   titleClassName?: string;
   spareImg?: string;
+  contentOnDark?: boolean;
 }) => {
   const leftLists = ['React', 'React Native', 'Typescript'];
   const rightLists = ['Android', 'IOS', 'Redux'];
@@ -87,7 +89,7 @@ export const BentoGridItem = ({
   return (
     <div
       className={cn(
-        'row-span-1 relative overflow-hidden rounded-2xl md:rounded-3xl glass-dark group/bento hover:shadow-xl hover:shadow-black/30 transition-all duration-300 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 border border-white/[0.06] hover:border-white/[0.1]',
+        'row-span-1 relative overflow-hidden rounded-2xl md:rounded-3xl glass-dark group/bento hover:shadow-xl hover:shadow-black/15 dark:hover:shadow-black/30 transition-all duration-300 shadow-input dark:shadow-none justify-between flex flex-col space-y-4 border border-border hover:border-foreground/12 dark:border-white/[0.06] dark:hover:border-white/[0.1]',
         className
       )}
     >
@@ -117,7 +119,7 @@ export const BentoGridItem = ({
         </div>
         {id === 6 && (
           <BackgroundGradientAnimation>
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
+            <div className="absolute z-50 inset-0 flex items-center justify-center text-foreground dark:text-white font-bold px-4 pointer-events-none text-3xl text-center md:text-4xl lg:text-7xl"></div>
           </BackgroundGradientAnimation>
         )}
 
@@ -127,11 +129,21 @@ export const BentoGridItem = ({
             'group-hover/bento:translate-x-2 transition duration-200 relative md:h-full min-h-40 flex flex-col px-5 p-5 lg:p-10'
           )}
         >
-          <div className="font-sans font-light md:max-w-32 text-body-sm lg:text-base text-text-muted z-10">
+          <div
+            className={cn(
+              'font-sans font-light md:max-w-32 text-body-sm lg:text-base z-10',
+              contentOnDark
+                ? 'text-white/80'
+                : 'text-text-muted'
+            )}
+          >
             {description}
           </div>
           <div
-            className={`font-season text-lg lg:text-2xl xl:text-3xl max-w-96 font-semibold z-10 text-text-primary tracking-tight`}
+            className={cn(
+              'font-display text-lg lg:text-2xl xl:text-3xl max-w-96 font-semibold z-10 tracking-tight',
+              contentOnDark ? 'text-white' : 'text-text-primary'
+            )}
           >
             {title}
           </div>
@@ -145,19 +157,19 @@ export const BentoGridItem = ({
                 {leftLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-70 lg:opacity-100 rounded-lg text-center bg-white/5 border border-white/10 text-white/80"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-70 lg:opacity-100 rounded-lg text-center bg-black/[0.04] border border-border text-foreground/85 dark:bg-white/5 dark:border-white/10 dark:text-white/80"
                   >
                     {item}
                   </span>
                 ))}
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-white/5 border border-white/10"></span>
+                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-black/[0.04] border border-border dark:bg-white/5 dark:border-white/10"></span>
               </div>
               <div className="flex flex-col gap-3 md:gap-3 lg:gap-6">
-                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-white/5 border border-white/10"></span>
+                <span className="lg:py-4 lg:px-3 py-4 px-3  rounded-lg text-center bg-black/[0.04] border border-border dark:bg-white/5 dark:border-white/10"></span>
                 {rightLists.map((item, i) => (
                   <span
                     key={i}
-                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-70 lg:opacity-100 rounded-lg text-center bg-white/5 border border-white/10 text-white/80"
+                    className="lg:py-4 lg:px-3 py-2 px-3 text-xs lg:text-base opacity-70 lg:opacity-100 rounded-lg text-center bg-black/[0.04] border border-border text-foreground/85 dark:bg-white/5 dark:border-white/10 dark:text-white/80"
                   >
                     {item}
                   </span>

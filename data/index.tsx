@@ -18,6 +18,8 @@ export interface GridItem {
   titleClassName: string;
   img: string;
   spareImg: string;
+  /** True when the card uses a dark image/artwork; use light text for contrast in all themes */
+  contentOnDark?: boolean;
 }
 
 export interface TechStack {
@@ -106,18 +108,19 @@ export const navItems: NavItem[] = [
 export const gridItems: GridItem[] = [
   {
     id: 1,
-    title: 'Collaborating with clients, fostering open communication.',
-    description: '',
+    title: 'Clear async collaboration and steady updates.',
+    description: 'Remote-first',
     className: 'lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]',
     imgClassName: 'w-full h-full',
     titleClassName: 'justify-end',
     img: '/b1.svg',
     spareImg: '',
+    contentOnDark: true,
   },
   {
     id: 2,
-    title: "I'm very flexible with time zone communications",
-    description: '',
+    title: 'Flexible across time zones for standups and reviews.',
+    description: 'Global-friendly',
     className: 'lg:col-span-2 md:col-span-3 md:row-span-2',
     imgClassName: '',
     titleClassName: 'justify-start',
@@ -126,8 +129,8 @@ export const gridItems: GridItem[] = [
   },
   {
     id: 3,
-    title: 'My tech stack',
-    description: 'I am constantly improving my skills',
+    title: 'React, React Native, TypeScript—and always leveling up.',
+    description: 'Core stack',
     className: 'lg:col-span-2 md:col-span-3 md:row-span-2',
     imgClassName: '',
     titleClassName: 'justify-center',
@@ -136,8 +139,8 @@ export const gridItems: GridItem[] = [
   },
   {
     id: 4,
-    title: 'Tech enthusiast driven by a passion for creating innovative apps',
-    description: 'Here for the love of coding',
+    title: 'Product-minded engineering: polish, perf, and maintainability.',
+    description: 'What drives me',
     className: 'lg:col-span-2 md:col-span-3 md:row-span-1',
     imgClassName: '',
     titleClassName: 'justify-start',
@@ -146,8 +149,8 @@ export const gridItems: GridItem[] = [
   },
   {
     id: 5,
-    title: 'Currently building a finance app',
-    description: 'The Inside Scoop',
+    title: 'Shipping features on a finance product right now.',
+    description: 'Currently',
     className: 'md:col-span-3 md:row-span-2',
     imgClassName: 'absolute right-0 bottom-0 md:w-96 w-60',
     titleClassName: 'justify-center md:justify-start lg:justify-center',
@@ -156,8 +159,8 @@ export const gridItems: GridItem[] = [
   },
   {
     id: 6,
-    title: 'Do you want to start a project together?',
-    description: '',
+    title: 'Have an idea? Copy my email or say hello below.',
+    description: "Let's talk",
     className: 'lg:col-span-2 md:col-span-3 md:row-span-1',
     imgClassName: '',
     titleClassName: 'justify-center md:max-w-full max-w-60 text-center',

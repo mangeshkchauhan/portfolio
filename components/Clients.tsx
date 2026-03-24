@@ -23,8 +23,8 @@ const Clients = () => {
     <section id="clients" className="relative py-24 md:py-32">
       {/* Decorative subtle glows */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-white/5 rounded-full blur-3xl opacity-10" />
-        <div className="absolute bottom-10 right-8 w-56 h-56 bg-white/5 rounded-full blur-3xl opacity-10" />
+        <div className="absolute top-10 left-10 w-40 h-40 bg-brand-primary/10 dark:bg-white/5 rounded-full blur-3xl opacity-30 dark:opacity-10" />
+        <div className="absolute bottom-10 right-8 w-56 h-56 bg-brand-primary/10 dark:bg-white/5 rounded-full blur-3xl opacity-30 dark:opacity-10" />
       </div>
 
       <motion.div
@@ -37,28 +37,48 @@ const Clients = () => {
         <p className="text-caption text-brand-primary/90 mb-4 tracking-widest">
           Testimonials
         </p>
-        <h1 className="text-display-md font-season font-normal text-center text-text-primary">
+        <h2 className="text-display-md font-display font-normal text-center text-text-primary">
           Kind words from{' '}
           <span className="text-brand-primary">peers and clients</span>
-        </h1>
+        </h2>
+        <p className="text-text-secondary max-w-2xl mx-auto text-body-lg font-sans leading-relaxed mt-6">
+          Feedback from people I&apos;ve shipped with—clear communication,
+          fast iteration, and interfaces that hold up in production.
+        </p>
       </motion.div>
 
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center w-full max-w-7xl mx-auto">
         <InfiniteMovingCards
           items={testimonials}
           direction="right"
           speed="slow"
         />
 
-        <motion.h2
+        <div
+          className="w-full max-w-2xl mx-auto mt-14 md:mt-16 mb-2 h-px bg-gradient-to-r from-transparent via-border to-transparent dark:via-white/15"
+          aria-hidden
+        />
+
+        <motion.h3
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-2xl md:text-3xl lg:text-4xl font-season font-normal text-center mt-8 md:mt-12 text-text-primary"
+          className="text-2xl md:text-3xl lg:text-4xl font-display font-normal text-center mt-10 md:mt-12 text-text-primary"
         >
-          Contributed <span className="text-brand-primary">for</span>
-        </motion.h2>
+          Teams &amp;{' '}
+          <span className="text-brand-primary">organizations</span>
+        </motion.h3>
+        <motion.p
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="text-text-secondary text-body-md max-w-xl mx-auto text-center mt-3 mb-2"
+        >
+          Places where I&apos;ve contributed product work, from edtech and
+          travel to agency and freelance collaborations.
+        </motion.p>
 
         <motion.div
           variants={containerVariants}
@@ -80,7 +100,7 @@ const Clients = () => {
                 whileTap={{ scale: 0.97 }}
                 tabIndex={0}
                 aria-label={name}
-                className="group relative flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/[0.08] backdrop-blur-sm hover:border-white/15 hover:bg-white/[0.04] hover:shadow-xl hover:shadow-black/30 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 transition-all duration-500 ease-out cursor-pointer overflow-hidden"
+                className="group relative flex flex-col items-center justify-center p-6 md:p-8 rounded-2xl bg-black/[0.02] border border-border backdrop-blur-sm hover:border-foreground/15 hover:bg-black/[0.04] hover:shadow-xl hover:shadow-black/10 focus:outline-none focus:ring-2 focus:ring-brand-primary/30 transition-all duration-500 ease-out cursor-pointer overflow-hidden dark:bg-white/[0.02] dark:border-white/[0.08] dark:hover:border-white/15 dark:hover:bg-white/[0.04] dark:hover:shadow-black/30"
               >
                 {/* Background glow effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -98,11 +118,11 @@ const Clients = () => {
                       className="rounded-2xl object-cover shadow-lg"
                       sizes="(max-width: 768px) 64px, 80px"
                     />
-                    <div className="absolute inset-0 rounded-2xl ring-0 ring-brand-primary/0 transition-all duration-300 group-hover:ring-2 group-hover:ring-brand-primary/40 group-hover:ring-offset-2 group-hover:ring-offset-black/20" />
+                    <div className="absolute inset-0 rounded-2xl ring-0 ring-brand-primary/0 transition-all duration-300 group-hover:ring-2 group-hover:ring-brand-primary/40 group-hover:ring-offset-2 group-hover:ring-offset-background dark:group-hover:ring-offset-black/20" />
                   </div>
 
                   {/* Logo shine effect */}
-                  <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-white/10 to-transparent blur-sm" />
+                  <div className="absolute -inset-1 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent via-black/8 to-transparent blur-sm dark:via-white/10" />
                 </div>
 
                 {/* Company name */}

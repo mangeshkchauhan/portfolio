@@ -11,7 +11,7 @@ export const TextGenerateEffect = ({
   className?: string;
 }) => {
   const [scope, animate] = useAnimate();
-  let wordsArray = words.split(' ');
+  const wordsArray = words.split(' ');
   useEffect(() => {
     animate(
       'span',
@@ -23,7 +23,7 @@ export const TextGenerateEffect = ({
         delay: stagger(0.2),
       }
     );
-  }, [scope.current]);
+  }, [words, animate]);
 
   const renderWords = () => {
     return (
@@ -32,7 +32,7 @@ export const TextGenerateEffect = ({
           return (
             <motion.span
               key={word + idx}
-              className={`${idx > 2 ? 'text-white' : 'text-white'} opacity-0`}
+              className="text-foreground dark:text-white opacity-0"
             >
               {word}{' '}
             </motion.span>
@@ -43,9 +43,9 @@ export const TextGenerateEffect = ({
   };
 
   return (
-    <div className={cn('font-season', className)}>
-      <div className="my-4">
-        <div className="text-white leading-snug tracking-wide">
+    <div className={cn('font-display', className)}>
+      <div className="my-1 sm:my-4">
+        <div className="text-foreground dark:text-white leading-snug tracking-wide">
           {renderWords()}
         </div>
       </div>

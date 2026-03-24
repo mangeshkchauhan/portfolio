@@ -65,7 +65,7 @@ const Footer = () => {
       </div>
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-zinc-100 via-zinc-100/50 to-transparent dark:from-black dark:via-black/50" />
 
       <motion.div
         variants={containerVariants}
@@ -81,7 +81,7 @@ const Footer = () => {
         >
           <motion.h1
             variants={itemVariants}
-            className="text-display-md font-season font-normal lg:max-w-[45vw] mb-6 text-text-primary"
+            className="text-display-md font-display font-normal lg:max-w-[45vw] mb-6 text-text-primary"
           >
             Ready to take <span className="text-brand-primary">your</span>{' '}
             digital presence to the next level?
@@ -112,10 +112,10 @@ const Footer = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             {/* About Section */}
             <motion.div variants={itemVariants} className="lg:col-span-2">
-              <h3 className="text-xl font-semibold text-white mb-4 font-season">
+              <h3 className="text-xl font-semibold text-text-primary mb-4 font-display">
                 About Me
               </h3>
-              <p className="text-gray-300 leading-relaxed mb-6">
+              <p className="text-text-secondary leading-relaxed mb-6">
                 Full-stack developer passionate about creating innovative
                 solutions that make a difference. Specialized in React, React
                 Native, and modern web technologies.
@@ -123,13 +123,13 @@ const Footer = () => {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="text-2xl font-bold text-white">4+</div>
-                  <div className="text-gray-400 text-sm">Years Experience</div>
+                <div className="text-center p-4 bg-black/[0.03] rounded-lg border border-border dark:bg-white/5 dark:border-white/10">
+                  <div className="text-2xl font-bold text-text-primary">4+</div>
+                  <div className="text-text-muted text-sm">Years Experience</div>
                 </div>
-                <div className="text-center p-4 bg-white/5 rounded-lg border border-white/10">
-                  <div className="text-2xl font-bold text-white">15+</div>
-                  <div className="text-gray-400 text-sm">
+                <div className="text-center p-4 bg-black/[0.03] rounded-lg border border-border dark:bg-white/5 dark:border-white/10">
+                  <div className="text-2xl font-bold text-text-primary">15+</div>
+                  <div className="text-text-muted text-sm">
                     Projects Completed
                   </div>
                 </div>
@@ -137,14 +137,14 @@ const Footer = () => {
 
               {/* Tech Stack */}
               <div>
-                <h4 className="text-text-primary font-medium mb-3 font-season">
+                <h4 className="text-text-primary font-medium mb-3 font-display">
                   Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {techStack.map((tech, index) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 glass border-white/10 rounded-full text-text-secondary text-body-sm font-mono"
+                      className="px-3 py-1 glass border-border dark:border-white/10 rounded-full text-text-secondary text-body-sm font-mono"
                     >
                       {tech}
                     </span>
@@ -155,7 +155,7 @@ const Footer = () => {
 
             {/* Quick Links */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-semibold text-text-primary mb-4 font-season">
+              <h3 className="text-xl font-semibold text-text-primary mb-4 font-display">
                 Quick Links
               </h3>
               <ul className="space-y-3">
@@ -163,7 +163,7 @@ const Footer = () => {
                   <li key={item.name}>
                     <Link
                       href={item.link}
-                      className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-text-secondary hover:text-text-primary transition-colors duration-300 flex items-center gap-2 group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform">
                         {item.name}
@@ -176,7 +176,7 @@ const Footer = () => {
                     href="/resume.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white transition-colors duration-300 flex items-center gap-2 group"
+                    className="text-text-secondary hover:text-text-primary transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <span className="group-hover:translate-x-1 transition-transform">
                       Resume
@@ -188,7 +188,7 @@ const Footer = () => {
 
             {/* Contact Info */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-xl font-semibold text-text-primary mb-4 font-season">
+              <h3 className="text-xl font-semibold text-text-primary mb-4 font-display">
                 Get In Touch
               </h3>
               <div className="space-y-4">
@@ -206,17 +206,17 @@ const Footer = () => {
                 </div>
 
                 <div className="flex items-start gap-3">
-                  <FaMapMarkerAlt className="text-white/80 mt-1 flex-shrink-0" />
+                  <FaMapMarkerAlt className="text-brand-primary mt-1 flex-shrink-0" />
                   <div>
-                    <p className="text-gray-300 text-sm">Location</p>
-                    <p className="text-white">India (Remote Available)</p>
+                    <p className="text-text-secondary text-sm">Location</p>
+                    <p className="text-text-primary">India (Remote Available)</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full mt-2"></div>
                   <div>
-                    <p className="text-gray-300 text-sm">Status</p>
+                    <p className="text-text-secondary text-sm">Status</p>
                     <p className="text-green-400">Available for work</p>
                   </div>
                 </div>
@@ -224,7 +224,7 @@ const Footer = () => {
 
               {/* Social Media */}
               <div className="mt-6">
-                <h4 className="text-white font-medium mb-3">Follow Me</h4>
+                <h4 className="text-text-primary font-medium mb-3">Follow Me</h4>
                 <div className="flex gap-3">
                   {socialMedia.map((social) => (
                     <motion.a
@@ -234,7 +234,7 @@ const Footer = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 flex items-center justify-center bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 rounded-lg transition-all duration-300 group"
+                      className="w-10 h-10 flex items-center justify-center bg-black/[0.04] hover:bg-black/[0.08] border border-border hover:border-foreground/20 dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/10 dark:hover:border-white/20 rounded-lg transition-all duration-300 group"
                     >
                       <Image
                         src={social.img}
@@ -250,7 +250,7 @@ const Footer = () => {
 
               {/* Buy Me a Coffee */}
               <div className="mt-6">
-                <h4 className="text-white font-medium mb-3">Support My Work</h4>
+                <h4 className="text-text-primary font-medium mb-3">Support My Work</h4>
                 <BuyMeCoffee variant="widget" />
               </div>
             </motion.div>
@@ -259,7 +259,7 @@ const Footer = () => {
           {/* Bottom Section */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10"
+            className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border dark:border-white/10"
           >
             <div className="flex flex-col md:flex-row items-center gap-4 mb-4 md:mb-0">
               <p className="text-gray-400 text-sm">
@@ -281,7 +281,7 @@ const Footer = () => {
               onClick={scrollToTop}
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/20 rounded-lg text-white text-sm font-medium transition-all duration-300"
+              className="flex items-center gap-2 px-4 py-2 bg-black/[0.04] hover:bg-black/[0.08] border border-border dark:bg-white/5 dark:hover:bg-white/10 dark:border-white/20 rounded-lg text-text-primary dark:text-white text-sm font-medium transition-all duration-300"
             >
               <FaArrowUp size={12} />
               Back to Top
